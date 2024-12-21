@@ -4,6 +4,7 @@ import {
     Command,
     Frame,
     LifeBuoy,
+    LucideIcon,
     Map,
     PieChart,
     Send,
@@ -13,92 +14,126 @@ import {
 
 
 
-export const menusConfig: any = {
-    navMain: [
+export const followUpMenu: {
+    category?: string,
+    menus: {
+        title: string
+        url?: string
+        icon: LucideIcon
+        isActive?: boolean
+        subMenu?: {
+            title: string
+            url: string
+        }[]
+    }[]
+} = {
+    category: "Acompanhamento",
+    menus: [
         {
-            title: "Playground",
-            url: "#",
+            title: "Alagamentos",
+            // url: "#",
             icon: SquareTerminal,
             isActive: true,
-            items: [
+            subMenu: [
                 {
-                    title: "History",
+                    title: "Notificações",
                     url: "#",
                 },
                 {
-                    title: "Starred",
-                    url: "#",
-                },
-                {
-                    title: "Settings",
-                    url: "#",
+                    title: "Mapa",
+                    url: "/app/maps",
                 },
             ],
         },
         {
-            title: "Models",
-            url: "#",
+            title: "Nível Rios",
             icon: Bot,
-            items: [
+            subMenu: [
                 {
-                    title: "Genesis",
+                    title: "Gráficos",
                     url: "#",
                 },
                 {
-                    title: "Explorer",
-                    url: "#",
-                },
-                {
-                    title: "Quantum",
+                    title: "Mapas",
                     url: "#",
                 },
             ],
         },
+    ]
+}
+export const infrastructureMenu: {
+    category?: string,
+    menus: {
+        title: string
+        url?: string
+        icon: LucideIcon
+        isActive?: boolean
+        subMenu?: {
+            title: string
+            url: string
+        }[]
+    }[]
+} = {
+    category: "Infraestrutura",
+    menus: [
         {
-            title: "Documentation",
-            url: "#",
-            icon: BookOpen,
-            items: [
+            title: "Cotas",
+            // url: "#",
+            icon: SquareTerminal,
+            isActive: true,
+            subMenu: [
                 {
-                    title: "Introduction",
+                    title: "Cadastro",
                     url: "#",
                 },
                 {
-                    title: "Get Started",
-                    url: "#",
-                },
-                {
-                    title: "Tutorials",
-                    url: "#",
-                },
-                {
-                    title: "Changelog",
-                    url: "#",
+                    title: "Mapa",
+                    url: "/app/maps",
                 },
             ],
         },
+    ]
+}
+
+export const singleMenu: {
+    category?: string,
+    menus: {
+        title: string
+        url: string
+        icon: LucideIcon
+    }[]
+} = {
+
+    // category: "Acompanhamento",
+    menus: [
         {
-            title: "Settings",
+            title: "Dashboard",
+            url: "/app/dashboard",
+            icon: PieChart,
+        },
+    ]
+}
+
+export const aboutMenu: {
+    menus: {
+        title: string
+        url: string
+        icon: LucideIcon
+    }[]
+} = {
+
+    // category: "Acompanhamento",
+    menus: [
+        {
+            title: "Supporte",
             url: "#",
-            icon: Settings2,
-            items: [
-                {
-                    title: "General",
-                    url: "#",
-                },
-                {
-                    title: "Team",
-                    url: "#",
-                },
-                {
-                    title: "Billing",
-                    url: "#",
-                },
-                {
-                    title: "Limits",
-                    url: "#",
-                },
-            ],
+            icon: LifeBuoy,
+        },
+        {
+            title: "Feedback",
+            url: "#",
+            icon: Send,
         },
     ],
 }
+

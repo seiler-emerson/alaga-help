@@ -19,34 +19,42 @@ import {
     SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 
-export function NavMain({
+
+export function DropDownMenu({
     items,
 }: {
     items: {
-        title: string
-        url: string
-        icon: LucideIcon
-        isActive?: boolean
-        items?: {
-            title: string
-            url: string
-        }[]
-    }[]
+        category?: string;
+        menus: {
+            title: string;
+            url?: string;
+            icon: LucideIcon;
+            isActive?: boolean;
+            subMenu?: {
+                title: string;
+                url: string;
+            }[];
+        }[];
+    };
 }) {
     return (
         <SidebarGroup>
-            <SidebarGroupLabel>Platform</SidebarGroupLabel>
+            {items.category &&
+                <SidebarGroupLabel>{items.category}</SidebarGroupLabel>
+            }
             <SidebarMenu>
-                {items.map((item) => (
+                {items.menus.map((item) => (
                     <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
-                        <SidebarMenuItem>
-                            <SidebarMenuButton asChild tooltip={item.title}>
-                                <a href={item.url}>
-                                    <item.icon />
-                                    <span>{item.title}</span>
-                                </a>
-                            </SidebarMenuButton>
-                            {item.items?.length ? (
+                        <SidebarMenuItem className='cursor-pointer'>
+                            <CollapsibleTrigger asChild>
+                                <SidebarMenuButton asChild tooltip={item.title}>
+                                    <a href={item.url}>
+                                        <item.icon />
+                                        <span>{item.title}</span>
+                                    </a>
+                                </SidebarMenuButton>
+                            </CollapsibleTrigger>
+                            {item.subMenu?.length ? (
                                 <>
                                     <CollapsibleTrigger asChild>
                                         <SidebarMenuAction className="data-[state=open]:rotate-90">
@@ -56,7 +64,7 @@ export function NavMain({
                                     </CollapsibleTrigger>
                                     <CollapsibleContent>
                                         <SidebarMenuSub>
-                                            {item.items?.map((subItem) => (
+                                            {item.subMenu?.map((subItem) => (
                                                 <SidebarMenuSubItem key={subItem.title}>
                                                     <SidebarMenuSubButton asChild>
                                                         <a href={subItem.url}>

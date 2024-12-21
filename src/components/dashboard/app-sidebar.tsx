@@ -14,10 +14,10 @@ import {
     SquareTerminal,
 } from "lucide-react"
 
-import { NavMain } from "@/components/sidebar/nav-main"
-import { NavProjects } from "@/components/sidebar/nav-projects"
-import { NavSecondary } from "@/components/sidebar/nav-secondary"
-import { NavUser } from "@/components/sidebar/nav-user"
+import { DropDownMenu } from "@/components/dashboard/dropdown-menu"
+import { NavProjects } from "@/components/dashboard/nav-projects"
+import { NavSecondary } from "@/components/dashboard/nav-secondary"
+import { NavUser } from "@/components/dashboard/nav-user"
 import {
     Sidebar,
     SidebarContent,
@@ -27,6 +27,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { aboutMenu, followUpMenu, infrastructureMenu, singleMenu } from '@/config/menus'
+import { SingleMenu } from './single-menu'
 
 const data = {
     user: {
@@ -173,9 +175,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
-                <NavMain items={data.navMain} />
-                <NavProjects projects={data.projects} />
-                <NavSecondary items={data.navSecondary} className="mt-auto" />
+                <SingleMenu items={singleMenu} />
+                <DropDownMenu items={followUpMenu} />
+                <DropDownMenu items={infrastructureMenu} />
+                {/* <NavProjects projects={data.projects} /> */}
+                <NavSecondary items={aboutMenu} className="mt-auto" />
             </SidebarContent>
             <SidebarFooter>
                 <NavUser user={data.user} />
