@@ -1,38 +1,13 @@
-import {
-    BookOpen,
-    Bot,
-    Command,
-    Frame,
-    LifeBuoy,
-    LucideIcon,
-    Map,
-    PieChart,
-    Send,
-    Settings2,
-    SquareTerminal,
-} from "lucide-react"
+import { DropDownMenuType } from '@/types/DropDownMenuType';
+import { SingleMenuType } from '@/types/SingleMenuType';
 
-
-
-export const followUpMenu: {
-    category?: string,
-    menus: {
-        title: string
-        url?: string
-        icon: LucideIcon
-        isActive?: boolean
-        subMenu?: {
-            title: string
-            url: string
-        }[]
-    }[]
-} = {
+export const followUpMenu: DropDownMenuType = {
     category: "Acompanhamento",
     menus: [
         {
             title: "Alagamentos",
             // url: "#",
-            icon: SquareTerminal,
+            icon: "SquareTerminal",
             isActive: true,
             subMenu: [
                 {
@@ -47,7 +22,7 @@ export const followUpMenu: {
         },
         {
             title: "Nível Rios",
-            icon: Bot,
+            icon: "Bot",
             subMenu: [
                 {
                     title: "Gráficos",
@@ -61,25 +36,13 @@ export const followUpMenu: {
         },
     ]
 }
-export const infrastructureMenu: {
-    category?: string,
-    menus: {
-        title: string
-        url?: string
-        icon: LucideIcon
-        isActive?: boolean
-        subMenu?: {
-            title: string
-            url: string
-        }[]
-    }[]
-} = {
+export const infrastructureMenu: DropDownMenuType = {
     category: "Infraestrutura",
     menus: [
         {
             title: "Cotas",
             // url: "#",
-            icon: SquareTerminal,
+            icon: "SquareTerminal",
             isActive: true,
             subMenu: [
                 {
@@ -95,44 +58,30 @@ export const infrastructureMenu: {
     ]
 }
 
-export const singleMenu: {
-    category?: string,
-    menus: {
-        title: string
-        url: string
-        icon: LucideIcon
-    }[]
-} = {
-
+export const singleMenu: SingleMenuType = {
     // category: "Acompanhamento",
     menus: [
         {
             title: "Dashboard",
             url: "/app/dashboard",
-            icon: PieChart,
+            icon: "PieChart",
         },
     ]
 }
 
-export const aboutMenu: {
-    menus: {
-        title: string
-        url: string
-        icon: LucideIcon
-    }[]
-} = {
+export const aboutMenu: SingleMenuType = {
 
     // category: "Acompanhamento",
     menus: [
         {
             title: "Supporte",
             url: "#",
-            icon: LifeBuoy,
+            icon: "LifeBuoy",
         },
         {
             title: "Feedback",
             url: "#",
-            icon: Send,
+            icon: "Send",
         },
     ],
 }

@@ -1,21 +1,6 @@
 "use client"
 
 import {
-    Folder,
-    MoreHorizontal,
-    Share,
-    Trash2,
-    type LucideIcon,
-} from "lucide-react"
-
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
     SidebarGroup,
     SidebarGroupLabel,
     SidebarMenu,
@@ -24,18 +9,15 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
+import { SingleMenuType } from '@/types/SingleMenuType';
+
+import * as Icons from "lucide-react";
+type IconName = keyof typeof Icons;
 
 export function SingleMenu({
     items: items,
 }: {
-    items: {
-        category?: string,
-        menus: {
-            title: string
-            url: string
-            icon: LucideIcon
-        }[]
-    }
+    items: SingleMenuType
 }) {
     const { isMobile } = useSidebar()
 
@@ -45,16 +27,24 @@ export function SingleMenu({
                 <SidebarGroupLabel>{items.category}</SidebarGroupLabel>
             }
             <SidebarMenu>
-                {items.menus.map((item) => (
-                    <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton asChild>
-                            <a href={item.url}>
-                                <item.icon />
-                                <span>{item.title}</span>
-                            </a>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                ))}
+                {items.menus.map((item) => {
+                    const Icon = Icons[item.icon] as React.ElementType; // Garante que é um componente válido
+                    if (!Icon) {
+                        console.warn(`Ícone ${item.icon} não encontrado ou inválido.`);
+                        return null;
+                    }
+                    return (
+
+                        <SidebarMenuItem key={item.title}>
+                            <SidebarMenuButton asChild>
+                                <a href={item.url}>
+                                    <Icon className="icon" />
+                                    <span>{item.title}</span>
+                                </a>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                    )
+                })}
             </SidebarMenu>
         </SidebarGroup>
     )
