@@ -8,6 +8,9 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn } from "next-auth/react";
+import { toast } from "@/hooks/use-toast"
+
+
 export const AuthForm = () => {
 
     const SignInFormSchema = z.object({
@@ -21,9 +24,19 @@ export const AuthForm = () => {
     })
 
     const handleSubmitForm = async (data: SignIObject) => {
-        // console.log(data);
+        try {
+            await signIn('email', {email: data.email, redirect: false})
+            toast({
+                title:'Link Mágico Enviado!',
+                description: 'Verifique seu e-mail para acessar o sistema via link mágico!'
+            })
+        } catch (error) {
+            toast({
+                title:'Erro!',
+                description: 'Ocorreu um erro, tente novamente!'
+            })
+        }
         
-        await signIn('email', {email: data.email})
     }
 
     return (
