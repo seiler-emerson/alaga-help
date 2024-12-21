@@ -29,6 +29,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
+import { signOut } from 'next-auth/react'
 
 export function NavUser({
     user,
@@ -80,31 +81,35 @@ export function NavUser({
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuGroup>
+                        {/* <DropdownMenuGroup>
                             <DropdownMenuItem>
                                 <Sparkles />
                                 Upgrade to Pro
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
-                        <DropdownMenuSeparator />
+                        <DropdownMenuSeparator /> */}
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem
+                                onClick={() => console.log('abrir cadastro')}
+                                className={'cursor-pointer'}>
                                 <BadgeCheck />
-                                Account
+                                Minha Conta
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            {/* <DropdownMenuItem>
                                 <CreditCard />
                                 Billing
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                                 <Bell />
                                 Notifications
-                            </DropdownMenuItem>
+                            </DropdownMenuItem> */}
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem
+                            onClick={() => signOut()}
+                            className={'cursor-pointer'}>
                             <LogOut />
-                            Log out
+                            Sair
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

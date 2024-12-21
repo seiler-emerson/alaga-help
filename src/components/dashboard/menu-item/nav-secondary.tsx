@@ -1,3 +1,4 @@
+"use client"
 import * as React from "react"
 
 import {
@@ -9,6 +10,7 @@ import {
 } from "@/components/ui/sidebar"
 import * as Icons from "lucide-react";
 import { SingleMenuType } from '@/types/SingleMenuType';
+import { usePathname } from 'next/navigation';
 
 export function NavSecondary({
     items: items,
@@ -16,11 +18,14 @@ export function NavSecondary({
 }: {
     items: SingleMenuType
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+    const pathname = usePathname();
+
     return (
         <SidebarGroup {...props}>
             <SidebarGroupContent>
                 <SidebarMenu>
                     {items.menus.map((item) => {
+                        const isActive = pathname === item.url;
                         const Icon = Icons[item.icon] as React.ElementType; // Garante que é um componente válido
                         if (!Icon) {
                             console.warn(`Ícone ${item.icon} não encontrado ou inválido.`);
@@ -28,7 +33,7 @@ export function NavSecondary({
                         }
                         return (
                             <SidebarMenuItem key={item.title}>
-                                <SidebarMenuButton asChild size="sm">
+                                <SidebarMenuButton asChild size="sm" isActive={isActive}>
                                     <a href={item.url}>
                                         <Icon className="icon" />
                                         <span>{item.title}</span>

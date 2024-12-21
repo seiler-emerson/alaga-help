@@ -10,9 +10,8 @@ import {
     useSidebar,
 } from "@/components/ui/sidebar"
 import { SingleMenuType } from '@/types/SingleMenuType';
-
+import { usePathname } from 'next/navigation';
 import * as Icons from "lucide-react";
-type IconName = keyof typeof Icons;
 
 export function SingleMenu({
     items: items,
@@ -20,6 +19,7 @@ export function SingleMenu({
     items: SingleMenuType
 }) {
     const { isMobile } = useSidebar()
+    const pathname = usePathname();
 
     return (
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -28,6 +28,7 @@ export function SingleMenu({
             }
             <SidebarMenu>
                 {items.menus.map((item) => {
+                    const isActive = pathname === item.url;
                     const Icon = Icons[item.icon] as React.ElementType; // Garante que é um componente válido
                     if (!Icon) {
                         console.warn(`Ícone ${item.icon} não encontrado ou inválido.`);
@@ -36,7 +37,7 @@ export function SingleMenu({
                     return (
 
                         <SidebarMenuItem key={item.title}>
-                            <SidebarMenuButton asChild>
+                            <SidebarMenuButton asChild isActive={isActive}>
                                 <a href={item.url}>
                                     <Icon className="icon" />
                                     <span>{item.title}</span>

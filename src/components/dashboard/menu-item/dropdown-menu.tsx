@@ -21,9 +21,12 @@ import {
 
 import * as Icons from "lucide-react";
 import { DropDownMenuType } from '@/types/DropDownMenuType';
+import { usePathname } from 'next/navigation';
 
 
 export function DropDownMenu({ items, }: { items: DropDownMenuType }) {
+    const pathname = usePathname();
+
     return (
         <SidebarGroup>
             {items.category &&
@@ -57,15 +60,18 @@ export function DropDownMenu({ items, }: { items: DropDownMenuType }) {
                                         </CollapsibleTrigger>
                                         <CollapsibleContent>
                                             <SidebarMenuSub>
-                                                {item.subMenu?.map((subItem) => (
-                                                    <SidebarMenuSubItem key={subItem.title}>
-                                                        <SidebarMenuSubButton asChild>
-                                                            <a href={subItem.url}>
-                                                                <span>{subItem.title}</span>
-                                                            </a>
-                                                        </SidebarMenuSubButton>
-                                                    </SidebarMenuSubItem>
-                                                ))}
+                                                {item.subMenu?.map((subItem) => {
+                                                    const isActive = pathname === subItem.url;
+                                                    return (
+                                                        <SidebarMenuSubItem key={subItem.title}>
+                                                            <SidebarMenuSubButton asChild isActive={isActive} >
+                                                                <a href={subItem.url}>
+                                                                    <span>{subItem.title}</span>
+                                                                </a>
+                                                            </SidebarMenuSubButton>
+                                                        </SidebarMenuSubItem>
+                                                    )
+                                                })}
                                             </SidebarMenuSub>
                                         </CollapsibleContent>
                                     </>

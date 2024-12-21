@@ -12,11 +12,11 @@ export const followUpMenu: DropDownMenuType = {
             subMenu: [
                 {
                     title: "Notificações",
-                    url: "#",
+                    url: "/app/flooding-notification",
                 },
                 {
                     title: "Mapa",
-                    url: "/app/maps",
+                    url: "/app/flooding-maps",
                 },
             ],
         },
@@ -26,11 +26,11 @@ export const followUpMenu: DropDownMenuType = {
             subMenu: [
                 {
                     title: "Gráficos",
-                    url: "#",
+                    url: "/app/rivers-graph",
                 },
                 {
                     title: "Mapas",
-                    url: "#",
+                    url: "/app/rivers-map",
                 },
             ],
         },
@@ -47,11 +47,11 @@ export const infrastructureMenu: DropDownMenuType = {
             subMenu: [
                 {
                     title: "Cadastro",
-                    url: "#",
+                    url: "/app/quota-registration",
                 },
                 {
                     title: "Mapa",
-                    url: "/app/maps",
+                    url: "/app/quota-map",
                 },
             ],
         },
@@ -75,12 +75,12 @@ export const aboutMenu: SingleMenuType = {
     menus: [
         {
             title: "Supporte",
-            url: "#",
+            url: "/app/support",
             icon: "LifeBuoy",
         },
         {
             title: "Feedback",
-            url: "#",
+            url: "/app/feedback",
             icon: "Send",
         },
     ],
