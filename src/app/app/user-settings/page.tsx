@@ -1,7 +1,11 @@
-const Page = () => {
-    return(
+import ProfileForm from './_components/form';
+import { auth } from '@/services/auth'
+
+const Page = async () => {
+    const session = await auth()
+    return (
         <div className=''>
-            Configurações do usuario
+            <ProfileForm defaultValues={session?.user} />
         </div>
     );
 };

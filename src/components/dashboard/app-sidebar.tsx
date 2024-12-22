@@ -52,7 +52,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
                     user={{
                         name: session?.user?.name || "Guest",
                         email: session?.user?.email || "guest@example.com",
-                        avatar: session?.user?.image || "/default-avatar.png",
+                        avatar: session?.user?.image,
                     }}
                 />
             </SidebarFooter>

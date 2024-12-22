@@ -9,13 +9,10 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn } from "next-auth/react";
 import { toast } from "@/hooks/use-toast"
+import { SignInFormSchema } from '../schema'
 
 
 export const AuthForm = () => {
-
-    const SignInFormSchema = z.object({
-        email: z.string().email({ message: "Por favor, insira um endereço de e-mail válido."})
-    })
 
     type SignIObject = z.infer<typeof SignInFormSchema>
 
@@ -25,18 +22,18 @@ export const AuthForm = () => {
 
     const handleSubmitForm = async (data: SignIObject) => {
         try {
-            await signIn('email', {email: data.email, redirect: false})
+            await signIn('email', { email: data.email, redirect: false })
             toast({
-                title:'Link Mágico Enviado!',
+                title: 'Link Mágico Enviado!',
                 description: 'Verifique seu e-mail para acessar o sistema via link mágico!'
             })
         } catch (error) {
             toast({
-                title:'Erro!',
+                title: 'Erro!',
                 description: 'Ocorreu um erro, tente novamente!'
             })
         }
-        
+
     }
 
     return (
