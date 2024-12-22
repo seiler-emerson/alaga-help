@@ -1,8 +1,9 @@
+import NotificationForm from './_components/form';
 
 const Page = () => {
     return(
         <div className=''>
-            Notification
+            <NotificationForm />
         </div>
     );
 };
