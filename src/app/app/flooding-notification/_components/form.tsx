@@ -23,15 +23,17 @@ import { searchAddress, searchCoordinates } from '../actions'
 import { parse, format } from 'date-fns';
 
 import { LatLngTuple } from 'leaflet'
-import { MapForm } from '@/components/maps/map-form'
+import { MapForm } from '@/app/app/flooding-notification/_components/map-form'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ufBrasil } from '@/data/data'
 import { Alert } from './alert'
 import { createNotification } from '@/config/api'
 
+type Props = {
+    openForm: (open: boolean) => void
+}
 
-
-const NotificationForm = () => {
+const NotificationForm = ({ openForm }: Props) => {
 
     const router = useRouter()
     type createFloodingNotificationObject = z.infer<typeof createFloodingNotificationSchema>
@@ -63,6 +65,7 @@ const NotificationForm = () => {
                 title: 'Sucesso',
                 description: 'Sua notificação foi salva com sucesso.',
             })
+            openForm(false)
         } catch (error) {
             toast({
                 title: 'Erro!',
@@ -161,7 +164,6 @@ const NotificationForm = () => {
 
             <Card className="w-full">
                 <CardHeader>
-                    <CardTitle>Notificação de Alagamento</CardTitle>
                     <CardDescription>Digite seu cep para buscar o endereço automáticamente.</CardDescription>
                 </CardHeader>
 
@@ -255,7 +257,7 @@ const NotificationForm = () => {
                                                     <SelectContent>
                                                         <SelectGroup>
                                                             <SelectLabel>Estados</SelectLabel>
-                                                            {ufBrasil.map(item => <SelectItem key={item.uf} value={item.uf}>{item.name}</SelectItem>)}
+                                                            {ufBrasil.map(item => <SelectItem key={item.value} value={item.value}>{item.label}</SelectItem>)}
                                                         </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
@@ -321,10 +323,18 @@ const NotificationForm = () => {
                                 <MapForm position={position} setCoordinates={setNewCoordinates} />
                             </div>
                         </div>
-                        <div className="mt-3 flex justify-end">
+                        <div className="mt-3 flex justify-end gap-4">
+                            <Button
+                                variant="destructive"
+                                disabled={isLoading}
+                                type="button"
+                                onClick={() => openForm(false)}
+                            >
+                                {!isSubmitting && 'Cancelar'}
+                            </Button>
                             <Button disabled={isLoading} type="submit">
                                 {isSubmitting && 'Salvando...'}
-                                {!isSubmitting && 'Salvar alterações'}
+                                {!isSubmitting && 'Salvar'}
                             </Button>
 
                         </div>

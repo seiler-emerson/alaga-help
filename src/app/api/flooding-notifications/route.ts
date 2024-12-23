@@ -50,3 +50,68 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Erro ao criar notificação' }, { status: 500 });
   }
 }
+
+
+export async function GET(request: Request) {
+  try {
+      const { searchParams } = new URL(request.url);
+      
+      const page = parseInt(searchParams.get('page') || '1');
+      const limit = parseInt(searchParams.get('limit') || '10');
+      const skip = (page - 1) * limit;
+
+      // Extract filters from query parameters
+      const filters: Record<string, string> = {};
+      ['district', 'city', 'state'].forEach(key => {
+          const value = searchParams.get(key);
+          if (value) filters[key] = value;
+      });
+
+      const where = Object.entries(filters).reduce((acc, [key, value]) => {
+          if (value && value !== "") {
+              return { ...acc, [key]: value };
+          }
+          return acc;
+      }, {});
+
+      const [notifications, totalCount] = await prisma.$transaction([
+          prisma.floodingNotification.findMany({
+              where,
+              select: {
+                  id: true,
+                  date: true,
+                  zipcode: true,
+                  district: true,
+                  city: true,
+                  state: true,
+              },
+              skip: skip,
+              take: limit,
+              orderBy: {
+                  date: 'desc',
+              }
+          }),
+          prisma.floodingNotification.count({ where })
+      ]);
+
+      return NextResponse.json({
+          notifications: notifications.map(notification => ({
+              id: notification.id,
+              date: notification.date.toISOString(),
+              zipcode: notification.zipcode || 0,
+              district: notification.district,
+              city: notification.city,
+              state: notification.state,
+          })),
+          pagination: {
+              currentPage: page,
+              totalPages: Math.ceil(totalCount / limit),
+              totalCount: totalCount,
+              limit: limit
+          }
+      });
+  } catch (error) {
+      console.error('Erro ao buscar notificações:', error);
+      return NextResponse.json({ error: 'Erro ao buscar notificações' }, { status: 500 });
+  }
+}

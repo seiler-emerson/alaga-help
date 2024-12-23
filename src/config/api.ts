@@ -1,7 +1,3 @@
-// ============================================================================================== //
-// =========================================== LOGIN ============================================ //
-// ============================================================================================== //
-
 import axios from 'axios';
 import { api } from './axios'
 import { z } from 'zod';
@@ -33,3 +29,48 @@ export const createNotification = async (data: createFloodingNotificationObject)
         throw error;
     }
 }
+
+export const getAllFloodingNotifications = async (page: number = 1, limit: number = 10, filters: Record<string, any> = {}): Promise<{
+    notifications: Array<{
+        id: string;
+        date: string;
+        zipcode: number;
+        district: string;
+        city: string;
+        state: string;
+    }>;
+    pagination: {
+        currentPage: number;
+        totalPages: number;
+        totalCount: number;
+        limit: number;
+    }
+}> => {
+    try {
+        const response = await api.get('/flooding-notifications', {
+            params: {
+                page,
+                limit,
+                ...filters
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const getAllFloodingFilterOptions = async (filters: { state?: string, city?: string } = {}): Promise<{
+    states: string[];
+    cities: string[];
+    districts: string[];
+}> => {
+    try {
+        const response = await api.get('/flooding-notifications/filter', {
+            params: filters
+        });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
