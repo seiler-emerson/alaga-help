@@ -319,7 +319,7 @@ const NotificationForm = ({ openForm }: Props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="grid bg-red-600">
+                            <div className="grid bg-red-600 h-[400px] md:h-full">
                                 <MapForm position={position} setCoordinates={setNewCoordinates} />
                             </div>
                         </div>
