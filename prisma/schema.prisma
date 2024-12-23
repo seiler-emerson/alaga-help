@@ -23,6 +23,9 @@ model User {
   sessions      Session[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
+
+  // Relacionamento inverso com FloodingNotification
+  notifications FloodingNotification[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -82,3 +85,26 @@ model Authenticator {
  
   @@id([userId, credentialID])
 }
+
+model FloodingNotification {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  date           DateTime
+  zipcode        Int?
+  street         String
+  addressNumber  Int?
+  district       String
+  city           String
+  state          String
+  complement     String?
+  observation    String?
+  latitude       Float
+  longitude      Float
+
+  // Relacionamento com User
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+
+}
+
+
