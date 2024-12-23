@@ -40,7 +40,7 @@ export const Table = () => {
     }, [])
 
     return (
-        <div className="container mx-auto py-10">
+        <div className="py-10 w-full overflow-x-auto">
             {data &&
                 <DataTable
                     columns={columns}

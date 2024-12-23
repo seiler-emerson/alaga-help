@@ -117,17 +117,19 @@ export function DataTable<TData, TValue>({
   const isFiltered = filters.state !== "" || filters.city !== "" || filters.district !== ""
 
   return (
-    <div className="w-full">
-      <div className="flex items-center py-4">
-        <SlidersHorizontal className="ml-2 h-4 w-4" />
-        <span className='text-sm mx-2'>Filtros:</span>
+    <div className='w-full overflow-auto'>
+      <div className="flex flex-col md:flex-row items-start md:items-center py-4 gap-2 md:gap-0">
+        <div className='flex items-center'>
+          <SlidersHorizontal className="ml-2 h-4 w-4" />
+          <span className='text-sm mx-2'>Filtros:</span>
+        </div>
         <Popover open={stateOpen} onOpenChange={setStateOpen}>
           <PopoverTrigger asChild>
             <Button
               variant="outline"
               role="combobox"
               aria-expanded={stateOpen}
-              className="w-[180px] mr-2 justify-between"
+              className="w-full md:w-[180px] mr-2 justify-between"
             >
               {filters.state || "Estado"}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -186,7 +188,7 @@ export function DataTable<TData, TValue>({
               variant="outline"
               role="combobox"
               aria-expanded={cityOpen}
-              className="w-[180px] mr-2 justify-between"
+              className="w-full md:w-[180px] mr-2 justify-between"
               disabled={!filters.state}
             >
               {filters.city || "Cidade"}
@@ -246,7 +248,7 @@ export function DataTable<TData, TValue>({
               variant="outline"
               role="combobox"
               aria-expanded={districtOpen}
-              className="w-[180px] mr-2 justify-between"
+              className="w-full md:w-[180px] mr-2 justify-between"
               disabled={!filters.city}
             >
               {filters.district || "Bairro"}
@@ -312,7 +314,7 @@ export function DataTable<TData, TValue>({
       </div>
 
       <div className="rounded-md border">
-        <Table>
+        <Table className='min-w-full w-full relative'>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
