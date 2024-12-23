@@ -32,6 +32,33 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 }
 
+export async function GET(request: Request, { params }: { params: { id: string } }) {
+  try {
+    const id = params.id;
+
+    const notification = await prisma.floodingNotification.findFirst({
+      where: { id },
+      select: {
+        id: true,
+        date: true,
+        zipcode: true,
+        street: true,
+        district: true,
+        city: true,
+        state: true,
+        observation: true,
+        latitude: true,
+        longitude: true,
+      },
+    });
+
+    return NextResponse.json(notification, { status: 200 });
+  } catch (error) {
+    console.error('Erro ao buscar notificação:', error);
+    return NextResponse.json({ error: 'Erro ao atualizar notificação' }, { status: 500 });
+  }
+}
+
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
     try {
       const id = params.id;

@@ -2,8 +2,8 @@ import axios from 'axios';
 import { api } from './axios'
 import { z } from 'zod';
 import { createFloodingNotificationSchema } from '@/app/app/flooding-notification/schema';
+import { Coordinate } from '@/types/Coordinate';
 
-// // CAPTURA OS DADOS INCIAIS DO USUARIO LOGADO
 export const getAddressByCep = async (cep: string): Promise<any> => {
     const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
     console.log(response);
@@ -24,6 +24,16 @@ export const createNotification = async (data: createFloodingNotificationObject)
 
     try {
         const response = await api.post('/flooding-notifications', data);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getNotificationById = async (id: string): Promise<any> => {
+
+    try {
+        const response = await api.get('/flooding-notifications/'+id);
         return response;
     } catch (error) {
         throw error;
@@ -69,6 +79,15 @@ export const getAllFloodingFilterOptions = async (filters: { state?: string, cit
         const response = await api.get('/flooding-notifications/filter', {
             params: filters
         });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const getAllFlooding24h = async (): Promise<Coordinate[]> => {
+    try {
+        const response = await api.get('/flooding-notifications/global-map');
         return response.data;
     } catch (error) {
         throw error;
