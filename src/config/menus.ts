@@ -15,7 +15,15 @@ export const followUpMenu: DropDownMenuType = {
                     url: "/app/flooding-notification",
                 },
                 {
-                    title: "Mapa",
+                    title: "Mapa - Pontos Alagados",
+                    url: "/app/flooding-maps",
+                },
+                {
+                    title: "Mapa - Ruas Alagadas",
+                    url: "/app/flooding-street-maps",
+                },
+                {
+                    title: "Mapa - Calor",
                     url: "/app/flooding-maps",
                 },
             ],

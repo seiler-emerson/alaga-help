@@ -100,6 +100,15 @@ export const getAllFlooding24h = async (): Promise<Coordinate[]> => {
     }
 };
 
+export const getAllStreetFlooding24 = async (): Promise<Coordinate[]> => {
+    try {
+        const response = await api.get('/flooding-notifications/global-street-map');
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
 
 export const getItajaiRiver1 = async (): Promise<any> => {
     

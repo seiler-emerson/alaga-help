@@ -179,6 +179,7 @@ const NotificationForm = ({ openForm }: Props) => {
         setValue('limitLatEnd', '')
         setValue('limitLonEnd', '')
         setIsAlertOpen(true)
+        setDisbledSubmit(false)
         setError("latitude", {
             type: "manual",
             message: "Campo obrigatório! Selecione o ponto no mapa!"
