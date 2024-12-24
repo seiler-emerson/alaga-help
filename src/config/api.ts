@@ -93,3 +93,11 @@ export const getAllFlooding24h = async (): Promise<Coordinate[]> => {
         throw error;
     }
 };
+
+
+export const getItajaiRiver1 = async (): Promise<any> => {
+    
+    const response = await axios.get(`https://intranet2.itajai.sc.gov.br/defesa-civil/api/telemetria?dc=DC01`);
+    return response;
+
+};

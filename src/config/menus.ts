@@ -26,7 +26,7 @@ export const followUpMenu: DropDownMenuType = {
             subMenu: [
                 {
                     title: "Gráficos",
-                    url: "/app/rivers-graph",
+                    url: "/app/rivers-chart",
                 },
                 {
                     title: "Mapas",
