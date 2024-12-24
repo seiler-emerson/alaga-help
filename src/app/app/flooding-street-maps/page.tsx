@@ -17,7 +17,6 @@ const Page = () => {
       
     const getDataMap = async () => {
         const response = await getAllStreetFlooding24()
-        console.log(response)
         setDataMap(response)
     };
 

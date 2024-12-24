@@ -10,7 +10,6 @@ export default function Page() {
   const getData = async () => {
       const response = await getItajaiRiver1()
       setChartData(response.data)
-      console.log(response.data)
   };
 
   useEffect(()=>{

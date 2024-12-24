@@ -96,7 +96,7 @@ export function NavUser({
                         <DropdownMenuGroup>
                             <Link href={'/app/user-settings'}>
                                 <DropdownMenuItem
-                                    onClick={() => console.log('abrir cadastro')}
+                                    onClick={() => console.log('')}
                                     className={'cursor-pointer'}>
                                     <BadgeCheck />
                                     Minha Conta

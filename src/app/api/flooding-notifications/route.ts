@@ -21,10 +21,6 @@ export async function POST(request: Request) {
     if (!user) {
       return NextResponse.json({ error: 'Usuário não encontrado' }, { status: 404 });
     }
-
-    console.log(user);
-
-
     const data = await request.json();
 
     const newNotification = await prisma.floodingNotification.create({

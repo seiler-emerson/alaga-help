@@ -86,7 +86,6 @@ const NotificationForm = ({ openForm }: Props) => {
         setPosition([coordinates.latitude, coordinates.longitude]);
         setValue('latitude', coordinates.latitude)
         setValue('longitude', coordinates.longitude)
-        console.log(coordinates);
         
         if (coordinates.limits.length > 0) {
             setValue('limitLatStart', parseFloat(coordinates.limits[0]))

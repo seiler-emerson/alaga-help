@@ -17,8 +17,6 @@ export async function searchAddress(cep: string) {
     try {
         const response = await getAddressByCep(cep)
         const data = response.data;
-        console.log(data);
-
         return data;
     } catch (error) {
         throw new Error('Erro ao buscar o endereço');
