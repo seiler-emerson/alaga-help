@@ -9,6 +9,7 @@ import 'leaflet/dist/leaflet.css';
 import { getNotificationById } from '@/config/api';
 import { format } from 'date-fns';
 import { Coordinate } from '@/types/Coordinate';
+import { useTheme } from 'next-themes';
 
 type Props = {
     coordinates: Coordinate[]
@@ -23,12 +24,11 @@ const ComponentResize = () => {
 };
 
 const MapFloading = ({ coordinates }: Props) => {
-
+    const { theme } = useTheme()
     const [markerSelected, setMarkerSelected] = useState<any>()
     const centerLocation: LatLngTuple = [-26.830171106617026, -48.69609627289628];
     const zoom: number = 9
-    // const tiler = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    const tiler = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+    const tiler = theme === "light" ? "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
 
     const iconurl = "/img/map/location.svg"
 

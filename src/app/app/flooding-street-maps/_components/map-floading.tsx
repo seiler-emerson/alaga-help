@@ -6,6 +6,7 @@ import { AttributionControl, MapContainer, Marker, Popup, Rectangle, TileLayer, 
 import "leaflet/dist/leaflet.css";
 import 'leaflet/dist/leaflet.css';
 import { Coordinate } from '@/types/Coordinate';
+import { useTheme } from 'next-themes';
 
 type Props = {
     coordinates: Coordinate[]
@@ -21,11 +22,10 @@ const ComponentResize = () => {
 };
 
 const MapFloading = ({ coordinates, bounds }: Props) => {
-
+    const { theme } = useTheme()
     const centerLocation: LatLngTuple = [-26.830171106617026, -48.69609627289628];
     const zoom: number = 9
-    // const tiler = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    const tiler = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+    const tiler = theme === "light" ? "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
 
     const iconurl = "/img/map/location.svg"
 

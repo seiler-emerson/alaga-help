@@ -5,6 +5,7 @@ import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { useMap } from 'react-leaflet/hooks'
 import 'leaflet/dist/leaflet.css';
 import { searchBoundingbox } from '../actions';
+import { useTheme } from 'next-themes';
 
 type Props = {
     position: LatLngTuple
@@ -22,10 +23,10 @@ const ComponentResize = () => {
 };
 
 export const MapForm = ({ position, setCoordinates }: Props) => {
-
+    const { theme } = useTheme()
     const zoom: number = 13
     // const tiler = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    const tiler = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+    const tiler = theme === "light" ? "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
     const markerIcon = new L.Icon({
         iconUrl: "/img/map/location.svg",
         iconSize: new L.Point(50, 50)
