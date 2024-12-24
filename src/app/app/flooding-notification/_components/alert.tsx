@@ -13,9 +13,10 @@ type Props = {
     setOpen: (value: boolean) => void
     title: string
     message: string
+    needButton: boolean
 }
 
-export const Alert = ({ open, setOpen, title, message }: Props) => {
+export const Alert = ({ open, setOpen, title, message, needButton }: Props) => {
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogContent className="z-[1000]">
@@ -25,9 +26,11 @@ export const Alert = ({ open, setOpen, title, message }: Props) => {
                         {message}
                     </AlertDialogDescription>
                 </AlertDialogHeader>
-                <AlertDialogFooter>
-                    <AlertDialogAction onClick={() => setOpen(false)}>Ok</AlertDialogAction>
-                </AlertDialogFooter>
+                {needButton &&
+                    <AlertDialogFooter>
+                        <AlertDialogAction onClick={() => setOpen(false)}>Ok</AlertDialogAction>
+                    </AlertDialogFooter>
+                }
             </AlertDialogContent>
         </AlertDialog>
     );

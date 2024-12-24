@@ -4,10 +4,11 @@ import L, { LatLngTuple } from "leaflet";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { useMap } from 'react-leaflet/hooks'
 import 'leaflet/dist/leaflet.css';
+import { searchBoundingbox } from '../actions';
 
 type Props = {
     position: LatLngTuple
-    setCoordinates: (coordinates: number[]) => void
+    setCoordinates: (coordinates: { latitude: number, longitude: number, limits: any[] }) => void
 }
 
 const ComponentResize = () => {
@@ -23,7 +24,8 @@ const ComponentResize = () => {
 export const MapForm = ({ position, setCoordinates }: Props) => {
 
     const zoom: number = 13
-    const tiler = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    // const tiler = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    const tiler = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
     const markerIcon = new L.Icon({
         iconUrl: "/img/map/location.svg",
         iconSize: new L.Point(50, 50)
@@ -40,11 +42,23 @@ export const MapForm = ({ position, setCoordinates }: Props) => {
         return null;
     };
 
-    const updateMarkerCoordinates = (event: L.DragEndEvent) => {
+    const getBoundingbox = async (latitude: number, longitude: number) => {
+        const boundingbox = await searchBoundingbox(latitude, longitude);
+        return boundingbox.boundingbox
+
+    };
+    const updateMarkerCoordinates = async (event: L.DragEndEvent) => {
         const newPosition: LatLngTuple = [event.target.getLatLng().lat, event.target.getLatLng().lng];
-        let coordinate = [newPosition[0], newPosition[1]]
-        if (coordinate.length > 0) {
-            setCoordinates([newPosition[0], newPosition[1]])
+        let boundingbox = await getBoundingbox(event.target.getLatLng().lat, event.target.getLatLng().lng)
+
+        if (boundingbox) {
+            
+            let coordinate = {
+                latitude: newPosition[0],
+                longitude: newPosition[1],
+                limits: boundingbox
+            }
+            setCoordinates(coordinate)
         }
     };
 

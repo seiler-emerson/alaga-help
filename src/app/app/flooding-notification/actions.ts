@@ -1,8 +1,6 @@
 'use server';
 
-import { getAddressByCep, getAllFloodingFilterOptions, getAllFloodingNotifications, getCooordinatesByAddress } from '@/config/api';
-import { prisma } from '@/services/database';
-
+import { getAddressByCep, getAllFloodingFilterOptions, getAllFloodingNotifications, getBoundingboxByCooordinates, getCooordinatesByAddress } from '@/config/api';
 
 interface FilterParams {
     state?: string;
@@ -31,11 +29,18 @@ export async function searchCoordinates(address: string) {
     try {
         const response = await getCooordinatesByAddress(address)
         const data = await response.data;
+        return data[0]
+    } catch (error) {
+        throw new Error('Erro ao buscar a coordenada');
+    }
+}
 
-        if (data && data.length > 0) {
-            const { lat, lon } = data[0];
-            return [parseFloat(lat), parseFloat(lon)]
-        }
+export async function searchBoundingbox(latitude: number, longitude: number) {
+    
+    try {
+        const response = await getBoundingboxByCooordinates(latitude, longitude)
+        const data = await response.data;
+        return data
     } catch (error) {
         throw new Error('Erro ao buscar a coordenada');
     }

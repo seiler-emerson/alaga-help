@@ -16,6 +16,12 @@ export const getCooordinatesByAddress = async (address: string): Promise<any> =>
     return response
 }
 
+export const getBoundingboxByCooordinates = async (latitude: number, longitude: number): Promise<any> => {
+    console.log(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+    const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+    return response
+}
+
 
 // Flooding Notifications
 type createFloodingNotificationObject = z.infer<typeof createFloodingNotificationSchema>

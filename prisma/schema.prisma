@@ -99,6 +99,10 @@ model FloodingNotification {
   observation    String?
   latitude       Float
   longitude      Float
+  limitLatStart  Float?
+  limitLonStart  Float?
+  limitLatEnd    Float?
+  limitLonEnd    Float?
 
   // Relacionamento com User
   userId         String

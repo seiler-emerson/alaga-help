@@ -38,7 +38,7 @@ const NotificationForm = ({ openForm }: Props) => {
     const router = useRouter()
     type createFloodingNotificationObject = z.infer<typeof createFloodingNotificationSchema>
 
-    const { handleSubmit, register, formState: { errors, isSubmitting, isLoading }, control, setValue, getValues } = useForm<createFloodingNotificationObject>({
+    const { handleSubmit, register, formState: { errors, isSubmitting, isLoading }, control, setValue, getValues, setError } = useForm<createFloodingNotificationObject>({
         resolver: zodResolver(createFloodingNotificationSchema),
         defaultValues: {
             date: format(new Date(), 'dd/MM/yyyy'),
@@ -58,14 +58,13 @@ const NotificationForm = ({ openForm }: Props) => {
             };
 
             let response = await createNotification(payload)
-
-            // router.refresh()
-
-            toast({
-                title: 'Sucesso',
-                description: 'Sua notificação foi salva com sucesso.',
-            })
-            openForm(false)
+            if(response.status === 201) {
+                toast({
+                    title: 'Sucesso',
+                    description: 'Sua notificação foi salva com sucesso.',
+                })
+                openForm(false)
+            }
         } catch (error) {
             toast({
                 title: 'Erro!',
@@ -81,11 +80,25 @@ const NotificationForm = ({ openForm }: Props) => {
     const [addressNumberInput, setAddressNumberInput] = useState('');
     const debouncedCep = useDebounce(cepInput, 500);
     const [isAlertOpen, setIsAlertOpen] = useState(false);
+    const [disbledSubmit, setDisbledSubmit] = useState(false)
 
     const setNewCoordinates = (coordinates: any) => {
-        setPosition(coordinates);
-        setValue('latitude', coordinates[0])
-        setValue('longitude', coordinates[1])
+        setPosition([coordinates.latitude, coordinates.longitude]);
+        setValue('latitude', coordinates.latitude)
+        setValue('longitude', coordinates.longitude)
+        console.log(coordinates);
+        
+        if (coordinates.limits.length > 0) {
+            setValue('limitLatStart', parseFloat(coordinates.limits[0]))
+            setValue('limitLonStart', parseFloat(coordinates.limits[2]))
+            setValue('limitLatEnd', parseFloat(coordinates.limits[1]))
+            setValue('limitLonEnd', parseFloat(coordinates.limits[3]))
+        } else {
+            setValue('limitLatStart', '')
+            setValue('limitLonStart', '')
+            setValue('limitLatEnd', '')
+            setValue('limitLonEnd', '')
+        }
     };
 
     const buildDataAddressUrl = (addressData: any, includeDistrict: boolean) => {
@@ -117,8 +130,13 @@ const NotificationForm = ({ openForm }: Props) => {
         for (let i = 0; i < attempts.length; i++) {
             const url = attempts[i];
             const coordinates = await searchCoordinates(url);
-            if (coordinates && coordinates.length > 0) {
-                return coordinates;
+            if (coordinates) {
+                let positions = {
+                    latitude: parseFloat(coordinates.lat),
+                    longitude: parseFloat(coordinates.lon),
+                    limits: coordinates.boundingbox
+                }
+                return positions;
             } else if (i === attempts.length - 1) {
                 setcoordinateNotFound()
             }
@@ -130,6 +148,7 @@ const NotificationForm = ({ openForm }: Props) => {
         const fetchAddress = async () => {
             if (debouncedCep.length === 8) {
                 try {
+                    setDisbledSubmit(true)
                     const newAddress = await searchAddress(debouncedCep);
                     setValue('street', newAddress.logradouro || '');
                     setValue('district', newAddress.bairro || '');
@@ -141,10 +160,12 @@ const NotificationForm = ({ openForm }: Props) => {
                         const coordinates = await tryFetchCoordinates(newAddress);
                         if (coordinates) {
                             setNewCoordinates(coordinates);
+                            setDisbledSubmit(false)
                         }
                     }
                 } catch (err) {
                     console.error('Erro ao buscar o endereço:', err);
+                    setDisbledSubmit(false)
                 }
             }
         };
@@ -153,14 +174,26 @@ const NotificationForm = ({ openForm }: Props) => {
     }, [debouncedCep, setValue]);
 
     const setcoordinateNotFound = () => {
-        setValue('latitude', '')
-        setValue('longitude', '')
+        setValue('limitLatStart', '')
+        setValue('limitLonStart', '')
+        setValue('limitLatEnd', '')
+        setValue('limitLonEnd', '')
         setIsAlertOpen(true)
+        setError("latitude", {
+            type: "manual",
+            message: "Campo obrigatório! Selecione o ponto no mapa!"
+        });
+        setError("longitude", {
+            type: "manual",
+            message: "Campo obrigatório! Selecione o ponto no mapa!"
+        });
     };
+
     return (
         <div className='w-full h-full flex justify-center'>
 
-            <Alert open={isAlertOpen} setOpen={setIsAlertOpen} title={'Não achamos o local no mapa'} message={'Por favor mova o ponteiro do mapa para o local do alagamento para registrar as coordenadas! Você pode usar o zoom para buscar o local com mais precisão.'} />
+            <Alert open={isAlertOpen} setOpen={setIsAlertOpen} needButton={true} title={'Não achamos o local no mapa'} message={'Por favor mova o ponteiro do mapa para o local do alagamento para registrar as coordenadas! Você pode usar o zoom para buscar o local com mais precisão.'} />
+            <Alert open={disbledSubmit} setOpen={setIsAlertOpen} needButton={false} title={'Procurando Endereço'} message={'Aguarde enquanto localizamos os dados do enfereço.'} />
 
             <Card className="w-full">
                 <CardHeader>
@@ -332,7 +365,7 @@ const NotificationForm = ({ openForm }: Props) => {
                             >
                                 {!isSubmitting && 'Cancelar'}
                             </Button>
-                            <Button disabled={isLoading} type="submit">
+                            <Button disabled={isLoading || disbledSubmit} type="submit">
                                 {isSubmitting && 'Salvando...'}
                                 {!isSubmitting && 'Salvar'}
                             </Button>

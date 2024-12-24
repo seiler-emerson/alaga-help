@@ -40,6 +40,10 @@ export async function POST(request: Request) {
         observation: data.observation || null,
         latitude: parseFloat(data.latitude),
         longitude: parseFloat(data.longitude),
+        limitLatStart: data.limitLatStart || null,
+        limitLonStart: data.limitLonStart || null,
+        limitLatEnd: data.limitLatEnd || null,
+        limitLonEnd: data.limitLonEnd || null,
         userId: user.id, // Casting explícito pode ser necessário
       } as Prisma.FloodingNotificationUncheckedCreateInput,
     });
