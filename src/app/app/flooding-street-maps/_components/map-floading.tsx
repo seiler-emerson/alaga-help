@@ -24,8 +24,8 @@ const MapFloading = ({ coordinates, bounds }: Props) => {
 
     const centerLocation: LatLngTuple = [-26.830171106617026, -48.69609627289628];
     const zoom: number = 9
-    const tiler = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    // const tiler = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+    // const tiler = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    const tiler = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
 
     const iconurl = "/img/map/location.svg"
 
