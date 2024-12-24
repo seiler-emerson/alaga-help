@@ -24,7 +24,7 @@ export const followUpMenu: DropDownMenuType = {
                 },
                 {
                     title: "Mapa - Calor",
-                    url: "/app/flooding-maps",
+                    url: "/app/flooding-heat-maps",
                 },
             ],
         },
