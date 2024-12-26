@@ -24,9 +24,10 @@ interface RiverData {
 // page.tsx
 "use client"
 import { useEffect, useState } from 'react';
-import { RiverChart } from './_components/bar-chart';
+
 import { getItajaiLevelRiver } from '@/config/api';
 import { itajaiRiversData } from '@/data/data';
+import { RiverChart } from './_components/chart';
 
 export default function Page() {
   const [riverData, setRiverData] = useState<RiverData>({});
@@ -71,9 +72,6 @@ export default function Page() {
           key={river.id}
           chartData={riverData[river.id]?.measurements || []}
           name={river.name}
-          // attention={riverData[river.id]?.attention}
-          // alert={riverData[river.id]?.alert}
-          // emergency={riverData[river.id]?.emergency}
         />
       ))}
     </div>

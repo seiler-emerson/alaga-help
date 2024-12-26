@@ -32,6 +32,8 @@ type Props = {
 }
 export const RiverChart = ({ chartData, name }: Props) => {
     const getFillColor = (data: any[]) => {
+        console.log(data);
+        
         const currentLevel = data[data.length - 1]?.rio;
 
         if (!currentLevel) return "url(#fillCurrent)";
