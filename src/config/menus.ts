@@ -33,12 +33,12 @@ export const followUpMenu: DropDownMenuType = {
             icon: "Bot",
             subMenu: [
                 {
-                    title: "Gráficos",
-                    url: "/app/rivers-chart",
+                    title: "Itajaí - SC",
+                    url: "/app/rivers-chart-itajai",
                 },
                 {
-                    title: "Mapas",
-                    url: "/app/rivers-map",
+                    title: "Blumenau - SC",
+                    url: "/app/rivers-chart-bluemenau",
                 },
             ],
         },

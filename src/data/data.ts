@@ -27,3 +27,68 @@ export const ufBrasil = [
     { label: 'Sergipe', value: 'SE' },
     { label: 'Tocantins', value: 'TO' }
 ];
+export const itajaiRiversData = [
+   {
+       id: '01',
+       name: 'Rio Itajaí-Açu - ICMBio/CEPSUL',
+       attention: 1.3,
+       alert: 1.44,
+       emergency: 1.75
+     },
+     {
+       id: '02',
+       name: 'Rio Itajaí-Açu - Praça Celso Pereira da Silva',
+       attention: 1.6,
+       alert: 2,
+       emergency: 2.5
+     },
+     {
+       id: '03',
+       name: 'Rio Itajaí­-Mirim (canal retificado) - Captação SEMASA',
+       attention: 1.48,
+       alert: 1.85,
+       emergency: 2.5
+     },
+     {
+       id: '04',
+       name: 'Rio Itajaí­-Mirim (canal retificado e curso antigo) - Vitalmar Pescados',
+       attention: 1.5,
+       alert: 1.85,
+       emergency: 2.25
+     },
+     {
+       id: '05',
+       name: 'Rio Itajaí­-Rio Itajaí-­Mirim (curso antigo) - Propriedade privada',
+       attention: 1.6,
+       alert: 2.2,
+       emergency: 3
+     },
+     {
+       id: '06',
+       name: 'Rio Itajaí-­Mirim (curso antigo) - Itamirim Clube de Campo',
+       attention: 1.5,
+       alert: 1.85,
+       emergency: 2.55
+     },
+     {
+       id: '07',
+       name: 'Ribeirão da Murta - Portal',
+       attention: 1,
+       alert: 1.35,
+       emergency: 1.65
+     },
+     {
+       id: '08',
+       name: 'Ribeirão Canhanduba - Propriedade privada',
+       attention: 1.3,
+       alert: 1.44,
+       emergency: 1.75
+     },
+     {
+       id: '09',
+       name: 'Ribeirão da Murta - Ponte da Rua Lidia Puel Peixer',
+       attention: 1.3,
+       alert: 1.44,
+       emergency: 1.75
+     }
+];

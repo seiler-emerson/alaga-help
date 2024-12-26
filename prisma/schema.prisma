@@ -110,5 +110,3 @@ model FloodingNotification {
   createdAt      DateTime @default(now())
 
 }
-
-

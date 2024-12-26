@@ -91,14 +91,14 @@ export function NavUser({
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator /> */}
                         <DropdownMenuGroup>
-                            <Link href={'/app/user-settings'}>
-                                <DropdownMenuItem
-                                    onClick={() => console.log('')}
-                                    className={'cursor-pointer'}>
+                            <DropdownMenuItem
+                                onClick={() => console.log('')}
+                                className={'cursor-pointer'}>
+                                <Link href={'/app/user-settings'}>
                                     <BadgeCheck />
                                     Minha Conta
-                                </DropdownMenuItem>
-                            </Link>
+                                </Link>
+                            </DropdownMenuItem>
                             {/* <DropdownMenuItem>
                                 <CreditCard />
                                 Billing

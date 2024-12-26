@@ -1,6 +1,7 @@
 'use server';
 
 import { getAddressByCep, getAllFloodingFilterOptions, getAllFloodingNotifications, getBoundingboxByCooordinates, getCooordinatesByAddress } from '@/config/api';
+import { prisma } from '@/services/database';
 
 interface FilterParams {
     state?: string;
@@ -34,7 +35,7 @@ export async function searchCoordinates(address: string) {
 }
 
 export async function searchBoundingbox(latitude: number, longitude: number) {
-    
+
     try {
         const response = await getBoundingboxByCooordinates(latitude, longitude)
         const data = await response.data;
@@ -53,4 +54,9 @@ export async function getFloodingNotifications(page: number = 1, limit: number =
 export async function getFloodingFilterOptions(filters: FilterParams = {}) {
     const response = await getAllFloodingFilterOptions(filters)
     return response
+}
+export async function createNewRiver(data: any) {
+    const novoRio = await prisma.river.create({
+        data: data
+    });
 }

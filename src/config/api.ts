@@ -107,9 +107,13 @@ export const getAllStreetFlooding24 = async (): Promise<Coordinate[]> => {
 };
 
 
-export const getItajaiRiver1 = async (): Promise<any> => {
-    
-    const response = await axios.get(`https://intranet2.itajai.sc.gov.br/defesa-civil/api/telemetria?dc=DC01`);
+export const getItajaiLevelRiver = async (id: string): Promise<any> => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_ITAJAI_SC_RIVER}${id}`);
+    return response;
+
+};
+export const getBlumenauLevelRiver = async (): Promise<any> => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_BLUMENAU_RIVER}`);
     return response;
 
 };
