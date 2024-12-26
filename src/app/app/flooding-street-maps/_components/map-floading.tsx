@@ -29,7 +29,6 @@ const MapFloading = ({ coordinates, bounds }: Props) => {
 
     const iconurl = "/img/map/location.svg"
 
-
     const mapStyle = {
         height: "100%",
         width: "100%",

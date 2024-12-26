@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { columns } from './columns';
 import { DataTable } from '@/app/app/flooding-notification/_components/data-table';
 import { getFloodingFilterOptions, getFloodingNotifications } from '../actions';
-import { getAllFloodingNotifications } from '@/config/api';
 
 
 export const Table = () => {
