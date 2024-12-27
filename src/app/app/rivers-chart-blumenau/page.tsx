@@ -4,13 +4,9 @@ import { getNivelRio } from './action';
 import { RiverChart } from './_components/chart';
 
 export default function Page() {
-  const [riverData, setRiverData] = useState<any>();
-
-
+  const [riverData, setRiverData] = useState();
 
   useEffect(() => {
-
-
 
     const fetchRiverData = async () => {
       try {
@@ -20,24 +16,24 @@ export default function Page() {
           data[index].attention = 4
           data[index].alert = 6
           data[index].maxAlert = 8
-          
         }
         setRiverData(data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);
       }
     };
-
     fetchRiverData();
   }, []);
 
   return (
     <div className='grid grid-cols-1 lg:grid-cols-1'>
-      <RiverChart
-        key={'itj-blue'}
-        chartData={riverData}
-        name={'Rio Itajaí-Açu - Blumenau - SC'}
-      />
+      {riverData &&
+        <RiverChart
+          key={'itj-blue'}
+          chartData={riverData}
+          name={'Rio Itajaí-Açu - Blumenau - SC'}
+        />
+      }
     </div>
   );
 }

@@ -38,7 +38,7 @@ export const followUpMenu: DropDownMenuType = {
                 },
                 {
                     title: "Blumenau - SC",
-                    url: "/app/rivers-chart-bluemenau",
+                    url: "/app/rivers-chart-blumenau",
                 },
             ],
         },
