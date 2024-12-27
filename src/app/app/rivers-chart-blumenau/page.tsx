@@ -15,8 +15,13 @@ export default function Page() {
     const fetchRiverData = async () => {
       try {
         const data = await getNivelRio()
-        data[23].nivel = 7
-        console.log(data)
+        for (let index = 0; index < data.length; index++) {
+          data[index].observation = 3
+          data[index].attention = 4
+          data[index].alert = 6
+          data[index].maxAlert = 8
+          
+        }
         setRiverData(data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);

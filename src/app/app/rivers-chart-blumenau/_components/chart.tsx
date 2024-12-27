@@ -10,23 +10,19 @@ import { format } from 'date-fns';
 const chartConfig = {
     observation: {
         label: "Observação",
-        color: "hsl(var(--chart-5))",
+        color: "#e4ff00",
     },
     attention: {
         label: "Atenção",
-        color: "hsl(var(--chart-4))",
+        color: "#ffa200",
     },
     alert: {
         label: "Alerta",
-        color: "hsl(var(--chart-3))",
-    },
-    alert68: {
-        label: "Alerta (de 6m à 8m)",
-        color: "hsl(var(--chart-3))",
+        color: "#ff00c5",
     },
     maxAlert: {
         label: "Alerta Máximo (acima de 8m)",
-        color: "hsl(var(--chart-2))",
+        color: "#ff0000",
     },
     current: {
         label: "Nível Atual",
@@ -40,28 +36,28 @@ type Props = {
 }
 export const RiverChart = ({ chartData, name }: Props) => {
     const getFillColor = () => {
-        if(chartData) {
+        if (chartData) {
 
             console.log(chartData);
-            
+
             const currentLevel = chartData[23].nivel;
-    
-    
+
+
             if (!currentLevel) return "url(#fillCurrent)";
-    
+
             if (currentLevel >= 8) {
                 return "url(#fillMaxAlert)";
             }
-            if (currentLevel > 6) {
-                return "url(#fillAlert68)";
+            if (currentLevel >= 6) {
+                return "url(#fillAlert)";
             }
-            if (currentLevel > 4) {
+            if (currentLevel >= 4) {
                 return "url(#fillAttention)";
             }
-            if (currentLevel > 3) {
+            if (currentLevel >= 3) {
                 return "url(#fillObservation)";
             }
-    
+
             return "url(#fillCurrent)";
         }
     };
@@ -151,22 +147,22 @@ export const RiverChart = ({ chartData, name }: Props) => {
                                     stopOpacity={0.1}
                                 />
                             </linearGradient>
-                            <linearGradient id="fillAlert68" x1="0" y1="0" x2="0" y2="1">
+                            <linearGradient id="fillAlert" x1="0" y1="0" x2="0" y2="1">
                                 <stop
                                     offset="5%"
-                                    stopColor="#ff00c9"
+                                    stopColor="#ff00c5"
                                     stopOpacity={0.8}
                                 />
                                 <stop
                                     offset="95%"
-                                    stopColor="#ff00c9"
+                                    stopColor="#ff00c5"
                                     stopOpacity={0.1}
                                 />
                             </linearGradient>
                             <linearGradient id="fillMaxAlert" x1="0" y1="0" x2="0" y2="1">
                                 <stop
                                     offset="5%"
-                                    stopColor="#ff0000"
+                                    stopColor="#ff0200"
                                     stopOpacity={0.8}
                                 />
                                 <stop
@@ -181,8 +177,16 @@ export const RiverChart = ({ chartData, name }: Props) => {
                             type="natural"
                             fill={getFillColor()}
                             fillOpacity={0.4}
-                            stroke="var(--color-current)"
+                            stroke={getFillColor()}
                             stackId="rio"
+                        />
+                        <Area
+                            dataKey="observation"
+                            type="natural"
+                            fill="none"
+                            fillOpacity={0.4}
+                            stroke="var(--color-observation)"
+                            stackId="observation"
                         />
                         <Area
                             dataKey="attention"
@@ -201,12 +205,12 @@ export const RiverChart = ({ chartData, name }: Props) => {
                             stackId="alert"
                         />
                         <Area
-                            dataKey="emergency"
+                            dataKey="maxAlert"
                             type="natural"
                             fill="none"
                             fillOpacity={0.4}
-                            stroke="var(--color-emergency)"
-                            stackId="emergency"
+                            stroke="var(--color-maxAlert)"
+                            stackId="maxAlert"
                         />
 
                     </AreaChart>
