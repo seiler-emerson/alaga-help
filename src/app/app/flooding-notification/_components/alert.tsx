@@ -19,7 +19,7 @@ type Props = {
 export const Alert = ({ open, setOpen, title, message, needButton }: Props) => {
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
-            <AlertDialogContent className="z-[1000]">
+            <AlertDialogContent className="z-[2000]">
                 <AlertDialogHeader>
                     <AlertDialogTitle>{title}</AlertDialogTitle>
                     <AlertDialogDescription>
