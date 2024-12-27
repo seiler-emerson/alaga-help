@@ -1,16 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getUrl } from './lib/get-url'
 
-export function middleware(request: NextRequest) {
-  const token = request.cookies.get('authjs.session-token')
+export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
+  const token = request.cookies.get('authjs.session-token')
+  if (pathname === '/auth') {
 
-  if (pathname === '/auth' && token) {
-    return NextResponse.redirect(new URL(getUrl('/app/dashboard')))
+    if (token) {
+      return NextResponse.redirect(new URL(getUrl('/app/dashboard')))
+    }
+    return NextResponse.next()
   }
 
-  if (pathname.includes('/app') && !token) {
-    return NextResponse.redirect(new URL(getUrl('/auth')))
+  if (pathname.includes('/app')) {
+    try {
+
+      if (!token) {
+        return NextResponse.redirect(new URL(getUrl('/auth')))
+      }
+      return NextResponse.next()
+    } catch (error) {
+      return NextResponse.redirect(new URL(getUrl('/auth')))
+    }
   }
 }
 

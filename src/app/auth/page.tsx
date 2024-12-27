@@ -2,6 +2,7 @@
 
 import { GalleryVerticalEnd } from 'lucide-react';
 import { AuthForm } from './_components/auth-form';
+import Image from 'next/image';
 
 
 const Page = () => {
@@ -23,10 +24,12 @@ const Page = () => {
         </div>
       </div>
       <div className="relative hidden bg-muted lg:block">
-        <img
-          src="/placeholder.svg"
-          alt="Image"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+        <Image
+          src={'/img/login/login2.jpeg'}
+          alt={'City rivers'}
+          fill
+          className="object-cover"
+          priority
         />
       </div>
     </div>
