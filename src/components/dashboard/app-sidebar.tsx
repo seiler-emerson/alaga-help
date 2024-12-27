@@ -15,10 +15,11 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { aboutMenu, followUpMenu } from '@/config/menus'
+import { aboutMenu, devMenu, followUpMenu } from '@/config/menus'
 import { SingleMenu } from './menu-item/single-menu'
 import { auth } from '@/services/auth'
 import { NavUser } from './nav-user'
+import { DevMenu } from './menu-item/dev-menu'
 
 export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const session = await auth();
@@ -42,9 +43,10 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
-            <SidebarContent>
+            <SidebarContent >
                 <DropDownMenu items={followUpMenu} />
-                <NavSecondary items={aboutMenu} className="mt-auto" />
+                <SingleMenu items={aboutMenu} />
+                <DevMenu items={devMenu} className="mt-auto" />
             </SidebarContent>
             <SidebarFooter>
                 <NavUser

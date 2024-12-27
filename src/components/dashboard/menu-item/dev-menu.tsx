@@ -13,7 +13,7 @@ import * as Icons from "lucide-react";
 import { SingleMenuType } from '@/types/SingleMenuType';
 import { usePathname } from 'next/navigation';
 
-export function NavSecondary({
+export function DevMenu({
     items: items,
     ...props
 }: {
@@ -36,6 +36,7 @@ export function NavSecondary({
                             return null;
                         }
                         return (
+
                             <SidebarMenuItem key={item.title}>
                                 <SidebarMenuButton asChild size="sm" isActive={isActive}>
                                     <a href={item.url} target='_blank'>
@@ -44,10 +45,13 @@ export function NavSecondary({
                                     </a>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
+
                         )
                     })}
                 </SidebarMenu>
             </SidebarGroupContent>
+            <span className='text-sm my-4'>Pague-me um café!</span>
+            <img className='' src='/img/buymecoffe.png' />
         </SidebarGroup>
     )
 }

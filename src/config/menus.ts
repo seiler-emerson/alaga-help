@@ -47,17 +47,33 @@ export const followUpMenu: DropDownMenuType = {
 
 export const aboutMenu: SingleMenuType = {
 
-    // category: "Acompanhamento",
+    category: "Autoridades Competentes",
     menus: [
         {
-            title: "Supporte",
-            url: "/app/support",
+            title: "Defesa Civil - SC",
+            url: "https://www.defesacivil.sc.gov.br/",
             icon: "LifeBuoy",
         },
+    ],
+}
+export const devMenu: SingleMenuType = {
+
+    category: "Sobre o desenvolvedor",
+    menus: [
         {
-            title: "Feedback",
-            url: "/app/feedback",
-            icon: "Send",
+            title: "Linkedin",
+            url: "https://www.linkedin.com/in/seileremerson/",
+            icon: "Linkedin",
+        },
+        {
+            title: "Youtube",
+            url: "https://www.youtube.com/emersonseiler",
+            icon: "Youtube",
+        },
+        {
+            title: "Github",
+            url: "https://github.com/seiler-emerson",
+            icon: "Github",
         },
     ],
 }
