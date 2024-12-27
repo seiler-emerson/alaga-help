@@ -26,10 +26,7 @@ import { Moon, Sun } from 'lucide-react'
 export const NavHeader = () => {
     const { setTheme } = useTheme()
     const pathname = usePathname();
-    const segments = pathname
-        .replace(/^\/app/, "")
-        .split("/")
-        .filter(Boolean);
+
 
     const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -38,30 +35,7 @@ export const NavHeader = () => {
             <div className="flex w-full items-center gap-2 px-4">
                 <SidebarTrigger className="-ml-1" />
                 <Separator orientation="vertical" className="mr-2 h-4" />
-                <Breadcrumb>
-                    <BreadcrumbList>
-                        {segments.map((segment, index) => {
-                            const isLast = index === segments.length - 1;
-                            const path = "/app/" + segments.slice(0, index + 1).join("/");
 
-                            return (
-                                <React.Fragment key={path}>
-                                    <BreadcrumbItem key={path}>
-                                        {isLast ? (
-                                            <BreadcrumbLink href={path}>
-                                                {capitalize(segment)}
-                                            </BreadcrumbLink>
-                                        ) : (
-                                            <BreadcrumbPage>{capitalize(segment)}</BreadcrumbPage>
-                                        )}
-                                    </BreadcrumbItem >
-                                    {!isLast && <BreadcrumbSeparator key={`separator-${index}`} />}
-                                </React.Fragment>
-                            );
-                        })}
-                    </BreadcrumbList>
-                </Breadcrumb>
-                <Separator orientation="vertical" className="mr-2 h-4" />
             </div>
             <div className='w-full flex justify-end'>
                 <DropdownMenu >

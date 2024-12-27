@@ -1,6 +1,7 @@
 import * as React from "react"
 import {
     Command,
+    Waves,
 } from "lucide-react"
 
 import { DropDownMenu } from "@/components/dashboard/menu-item/dropdown-menu"
@@ -14,7 +15,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { aboutMenu, followUpMenu, infrastructureMenu, singleMenu } from '@/config/menus'
+import { aboutMenu, followUpMenu } from '@/config/menus'
 import { SingleMenu } from './menu-item/single-menu'
 import { auth } from '@/services/auth'
 import { NavUser } from './nav-user'
@@ -30,11 +31,11 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
                         <SidebarMenuButton size="lg" asChild>
                             <a href="#">
                                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                                    <Command className="size-4" />
+                                    <Waves className="size-4" />
                                 </div>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-semibold">Alaga Help</span>
-                                    <span className="truncate text-xs">Prevenção de Catastrofes</span>
+                                    <span className="truncate text-xs">Monitoramento</span>
                                 </div>
                             </a>
                         </SidebarMenuButton>
@@ -42,9 +43,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
-                <SingleMenu items={singleMenu} />
                 <DropDownMenu items={followUpMenu} />
-                <DropDownMenu items={infrastructureMenu} />
                 <NavSecondary items={aboutMenu} className="mt-auto" />
             </SidebarContent>
             <SidebarFooter>

@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
   if (pathname === '/auth') {
 
     if (token) {
-      return NextResponse.redirect(new URL(getUrl('/app/dashboard')))
+      return NextResponse.redirect(new URL(getUrl('/app/flooding-notification')))
     }
     return NextResponse.next()
   }

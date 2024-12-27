@@ -2,12 +2,12 @@ import { DropDownMenuType } from '@/types/DropDownMenuType';
 import { SingleMenuType } from '@/types/SingleMenuType';
 
 export const followUpMenu: DropDownMenuType = {
-    category: "Acompanhamento",
+    category: "Monitoramento",
     menus: [
         {
             title: "Alagamentos",
             // url: "#",
-            icon: "SquareTerminal",
+            icon: "WavesLadder",
             isActive: true,
             subMenu: [
                 {
@@ -30,7 +30,7 @@ export const followUpMenu: DropDownMenuType = {
         },
         {
             title: "Nível Rios",
-            icon: "Bot",
+            icon: "Waves",
             subMenu: [
                 {
                     title: "Itajaí - SC",
@@ -41,38 +41,6 @@ export const followUpMenu: DropDownMenuType = {
                     url: "/app/rivers-chart-blumenau",
                 },
             ],
-        },
-    ]
-}
-export const infrastructureMenu: DropDownMenuType = {
-    category: "Infraestrutura",
-    menus: [
-        {
-            title: "Cotas",
-            // url: "#",
-            icon: "SquareTerminal",
-            isActive: true,
-            subMenu: [
-                {
-                    title: "Cadastro",
-                    url: "/app/quota-registration",
-                },
-                {
-                    title: "Mapa",
-                    url: "/app/quota-map",
-                },
-            ],
-        },
-    ]
-}
-
-export const singleMenu: SingleMenuType = {
-    // category: "Acompanhamento",
-    menus: [
-        {
-            title: "Dashboard",
-            url: "/app/dashboard",
-            icon: "PieChart",
         },
     ]
 }
