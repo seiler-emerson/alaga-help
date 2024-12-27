@@ -22,10 +22,9 @@ interface RiverData {
 
 "use client"
 import { useEffect, useState } from 'react';
-
-import { getItajaiLevelRiver } from '@/config/api';
 import { itajaiRiversData } from '@/data/data';
 import { RiverChart } from './_components/chart';
+import { getItajaiLevelRiver } from '@/config/api';
 
 export default function Page() {
   const [riverData, setRiverData] = useState<RiverData>({});
@@ -75,7 +74,7 @@ export default function Page() {
             name={river.name}
           />
         ) : (
-          <p key={river.id}>Não há dados disponíveis para {river.name}</p>
+          <p key={river.id}>Carregando {river.name}</p>
         );
       })}
     </div>

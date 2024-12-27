@@ -1,7 +1,7 @@
 "use server"
 import { getBlumenauLevelRiver } from '@/config/api';
 
-export async function getNivelRio() {
+export async function getLevelRiver() {
     try {
         const response = await getBlumenauLevelRiver()
         return response.data.niveis;

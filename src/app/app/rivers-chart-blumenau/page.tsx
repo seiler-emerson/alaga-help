@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
-import { getNivelRio } from './action';
+import { getLevelRiver } from './action';
 import { RiverChart } from './_components/chart';
 
 export default function Page() {
@@ -10,7 +10,7 @@ export default function Page() {
 
     const fetchRiverData = async () => {
       try {
-        const data = await getNivelRio()
+        const data = await getLevelRiver()
         for (let index = 0; index < data.length; index++) {
           data[index].observation = 3
           data[index].attention = 4
@@ -34,7 +34,7 @@ export default function Page() {
           name={'Rio Itajaí-Açu - Blumenau - SC'}
         />
       ) : (
-        <div>Carregando...</div> // Fallback consistente
+        <div>Carregando Rio Itajaí-Açu - Blumenau - SC</div> // Fallback consistente
       )}
     </div>
   );
