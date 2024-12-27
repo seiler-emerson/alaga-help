@@ -83,30 +83,15 @@ export function NavUser({
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        {/* <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <Sparkles />
-                                Upgrade to Pro
-                            </DropdownMenuItem>
-                        </DropdownMenuGroup>
-                        <DropdownMenuSeparator /> */}
                         <DropdownMenuGroup>
                             <DropdownMenuItem
                                 onClick={() => console.log('')}
                                 className={'cursor-pointer'}>
-                                <Link href={'/app/user-settings'}>
+                                <Link href={'/app/user-settings'} className='flex gap-2'>
                                     <BadgeCheck />
                                     Minha Conta
                                 </Link>
                             </DropdownMenuItem>
-                            {/* <DropdownMenuItem>
-                                <CreditCard />
-                                Billing
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Bell />
-                                Notifications
-                            </DropdownMenuItem> */}
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
