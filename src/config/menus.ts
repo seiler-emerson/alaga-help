@@ -45,13 +45,23 @@ export const followUpMenu: DropDownMenuType = {
     ]
 }
 
-export const aboutMenu: SingleMenuType = {
+export const defesaCivilMenu: SingleMenuType = {
 
-    category: "Autoridades Competentes",
+    category: "Defesa Civil",
     menus: [
         {
-            title: "Defesa Civil - SC",
+            title: "Santa Catarina",
             url: "https://www.defesacivil.sc.gov.br/",
+            icon: "LifeBuoy",
+        },
+        {
+            title: "Itajaí-SC",
+            url: "https://defesacivil.itajai.sc.gov.br/",
+            icon: "LifeBuoy",
+        },
+        {
+            title: "Blumenau-SC",
+            url: "https://alertablu.blumenau.sc.gov.br/p/home",
             icon: "LifeBuoy",
         },
     ],

@@ -37,7 +37,7 @@ export function SingleMenu({
 
                         <SidebarMenuItem key={item.title}>
                             <SidebarMenuButton asChild isActive={isActive}>
-                                <a href={item.url}>
+                                <a href={item.url} target='_blank'>
                                     <Icon className="icon" />
                                     <span>{item.title}</span>
                                 </a>

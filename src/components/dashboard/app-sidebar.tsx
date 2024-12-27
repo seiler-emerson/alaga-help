@@ -15,7 +15,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { aboutMenu, devMenu, followUpMenu } from '@/config/menus'
+import { defesaCivilMenu, devMenu, followUpMenu } from '@/config/menus'
 import { SingleMenu } from './menu-item/single-menu'
 import { auth } from '@/services/auth'
 import { NavUser } from './nav-user'
@@ -45,7 +45,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
             </SidebarHeader>
             <SidebarContent >
                 <DropDownMenu items={followUpMenu} />
-                <SingleMenu items={aboutMenu} />
+                <SingleMenu items={defesaCivilMenu} />
                 <DevMenu items={devMenu} className="mt-auto" />
             </SidebarContent>
             <SidebarFooter>
