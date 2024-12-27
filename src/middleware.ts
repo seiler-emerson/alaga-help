@@ -12,13 +12,25 @@ export async function middleware(request: NextRequest) {
     }
     return NextResponse.redirect(new URL(getUrl('/auth')))
   }
-  
+
   if (pathname === '/auth') {
 
     if (token) {
       return NextResponse.redirect(new URL(getUrl('/app/flooding-notification')))
     }
     return NextResponse.next()
+  }
+
+  if (pathname.startsWith('/auth')) {
+    if (pathname === '/auth/verify') {
+      // Permitir a rota de verificação, independentemente do token
+      return NextResponse.next();
+    }
+
+    if (token) {
+      return NextResponse.redirect(new URL(getUrl('/app/flooding-notification')));
+    }
+    return NextResponse.next();
   }
 
   if (pathname.includes('/app')) {

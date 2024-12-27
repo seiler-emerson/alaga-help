@@ -2,10 +2,11 @@ import NextAuth from "next-auth"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from '../database'
 import EmailProvider from "next-auth/providers/email"
+import Nodemailer from "next-auth/providers/nodemailer"
 import { createTransport } from "nodemailer"
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
-  trustHost: true,
+  trustHost: process.env.AUTH_TRUST_HOST === "true",
   pages: {
     signIn: '/auth',
     signOut: '/auth',

@@ -10,8 +10,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn } from "next-auth/react";
 import { toast } from "@/hooks/use-toast"
 import { SignInFormSchema } from '../schema'
+import { useState } from 'react'
 
 export const AuthForm = () => {
+    const [isLoading, setIsLoading] = useState(false)
 
     type SignIObject = z.infer<typeof SignInFormSchema>
 
@@ -21,6 +23,8 @@ export const AuthForm = () => {
 
     const handleSubmitForm = async (data: SignIObject) => {
         try {
+            setIsLoading(true)
+            "use server"
             await signIn('email', { email: data.email, redirect: false })
             toast({
                 title: 'Link Mágico Enviado!',
@@ -31,6 +35,8 @@ export const AuthForm = () => {
                 title: 'Erro!',
                 description: 'Ocorreu um erro, tente novamente!'
             })
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -57,8 +63,8 @@ export const AuthForm = () => {
                     }
                 </div>
 
-                <Button type="submit" className="w-full">
-                    Enviar link mágico
+                <Button disabled={isLoading} type="submit" className="w-full">
+                    {isLoading ? 'Enviando...' : 'Enviar link mágico'}
                 </Button>
 
             </div>
