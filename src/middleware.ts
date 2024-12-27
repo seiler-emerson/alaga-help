@@ -4,6 +4,15 @@ import { getUrl } from './lib/get-url'
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const token = request.cookies.get('authjs.session-token')
+
+  // Tratamento para a rota raiz
+  if (pathname === '/') {
+    if (token) {
+      return NextResponse.redirect(new URL(getUrl('/app/flooding-notification')))
+    }
+    return NextResponse.redirect(new URL(getUrl('/auth')))
+  }
+  
   if (pathname === '/auth') {
 
     if (token) {

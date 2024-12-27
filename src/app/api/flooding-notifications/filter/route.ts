@@ -39,9 +39,9 @@ export async function GET(request: Request) {
         ]);
 
         return NextResponse.json({
-            states: states.map(s => s.state),
-            cities: cities.map(c => c.city),
-            districts: districts.map(d => d.district),
+            states: states.map((s: any) => s.state),
+            cities: cities.map((c: any) => c.city),
+            districts: districts.map((d: any) => d.district),
         });
     } catch (error) {
         console.error('Erro ao buscar opções de filtro:', error);

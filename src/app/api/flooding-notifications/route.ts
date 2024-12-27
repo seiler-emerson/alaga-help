@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { auth } from '@/services/auth';
 
 const prisma = new PrismaClient();
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
         limitLatEnd: data.limitLatEnd || null,
         limitLonEnd: data.limitLonEnd || null,
         userId: user.id, // Casting explícito pode ser necessário
-      } as Prisma.FloodingNotificationUncheckedCreateInput,
+      }
     });
 
     return NextResponse.json(newNotification, { status: 201 });
@@ -94,7 +94,7 @@ export async function GET(request: Request) {
       ]);
 
       return NextResponse.json({
-          notifications: notifications.map(notification => ({
+          notifications: notifications.map((notification: any) => ({
               id: notification.id,
               date: notification.date.toISOString(),
               zipcode: notification.zipcode || 0,

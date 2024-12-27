@@ -1,0 +1,25 @@
+version: '2.1'
+
+services:
+  alaga-help-1.0:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: alaga-help:1.0
+    container_name: alaga-help-1.0
+    ports:
+      - 9017:3000
+    environment:
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}
+      - DATABASE_URL=${DATABASE_URL}
+      - EMAIL_SERVER=${EMAIL_SERVER}
+      - EMAIL_FROM=${EMAIL_FROM}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - NEXT_PUBLIC_URL_ITAJAI_SC_RIVER=${NEXT_PUBLIC_URL_ITAJAI_SC_RIVER}
+      - NEXT_PUBLIC_URL_BLUMENAU_RIVER=${NEXT_PUBLIC_URL_BLUMENAU_RIVER}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - AUTH_TRUST_HOST=${AUTH_TRUST_HOST}
+    volumes:
+      - /app/node_modules
+    command: npm run start
+    restart: always

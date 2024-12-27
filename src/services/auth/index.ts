@@ -5,6 +5,7 @@ import EmailProvider from "next-auth/providers/email"
 import { createTransport } from "nodemailer"
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  trustHost: true,
   pages: {
     signIn: '/auth',
     signOut: '/auth',

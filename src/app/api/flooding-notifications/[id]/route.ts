@@ -3,9 +3,9 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const id = params.id;
+    const { id } = await params;
     const data = await request.json();
 
     const updatedNotification = await prisma.floodingNotification.update({
@@ -32,9 +32,9 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 }
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const id = params.id;
+    const { id } = await params;
 
     const notification = await prisma.floodingNotification.findFirst({
       where: { id },
@@ -59,9 +59,9 @@ export async function GET(request: Request, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }>  }) {
     try {
-      const id = params.id;
+      const { id } = await params;
   
       await prisma.floodingNotification.delete({
         where: { id },
