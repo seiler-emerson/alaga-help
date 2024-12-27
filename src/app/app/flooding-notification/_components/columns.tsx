@@ -16,7 +16,11 @@ export const columns: ColumnDef<Location>[] = [
     {
         accessorKey: "date",
         header: "Data",
-        cell: ({ row }) => format(new Date(row.original.date), 'dd/MM/yyyy')
+        cell: ({ row }) => {
+            const date = new Date(row.original.date);
+            const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+            return format(localDate, 'dd/MM/yyyy');
+        }
     },
     {
         accessorKey: "state",

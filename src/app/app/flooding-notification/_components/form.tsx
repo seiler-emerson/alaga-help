@@ -34,7 +34,6 @@ type Props = {
 
 const NotificationForm = ({ openForm }: Props) => {
 
-    const router = useRouter()
     type createFloodingNotificationObject = z.infer<typeof createFloodingNotificationSchema>
 
     const { handleSubmit, register, formState: { errors, isSubmitting, isLoading }, control, setValue, getValues, setError } = useForm<createFloodingNotificationObject>({
@@ -47,7 +46,9 @@ const NotificationForm = ({ openForm }: Props) => {
     const handleSubmitForm = async (data: createFloodingNotificationObject) => {
         try {
             const formattedDate = parse(data.date, 'dd/MM/yyyy', new Date());
+            
             const dateForDatabase = format(formattedDate, 'yyyy-MM-dd');
+
             if (!data.latitude || !data.longitude) {
                 setIsAlertOpen(true);
             }
