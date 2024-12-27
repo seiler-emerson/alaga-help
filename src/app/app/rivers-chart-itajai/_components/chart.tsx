@@ -10,19 +10,19 @@ import { format } from 'date-fns';
 const chartConfig = {
     attention: {
         label: "Atenção",
-        color: "hsl(var(--chart-4))",
+        color: "#e4ff00",
     },
     alert: {
         label: "Alerta",
-        color: "hsl(var(--chart-3))",
+        color: "#ffa200",
     },
     emergency: {
         label: "Emergência",
-        color: "hsl(var(--chart-2))",
+        color: "#ff0000",
     },
     current: {
         label: "Nível Atual",
-        color: "hsl(var(--chart-1))",
+        color: "#0027ff",
     },
 } satisfies ChartConfig
 
@@ -32,8 +32,6 @@ type Props = {
 }
 export const RiverChart = ({ chartData, name }: Props) => {
     const getFillColor = (data: any[]) => {
-        console.log(data);
-        
         const currentLevel = data[data.length - 1]?.rio;
 
         if (!currentLevel) return "url(#fillCurrent)";
@@ -154,7 +152,7 @@ export const RiverChart = ({ chartData, name }: Props) => {
                             fill={getFillColor(chartData)}
                             fillOpacity={0.4}
                             stroke={getFillColor(chartData)}
-                            stackId="rio"
+                            stackId="current"
                         />
                         <Area
                             dataKey="attention"
