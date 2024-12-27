@@ -39,8 +39,11 @@ export function DropDownMenu({ items, }: { items: DropDownMenuType }) {
                         console.warn(`Ícone ${item.icon} não encontrado ou inválido.`);
                         return null;
                     }
+                    const isAnySubmenuActive = item.subMenu?.some(
+                        subItem => pathname === subItem.url
+                    )
                     return (
-                        <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
+                        <Collapsible key={item.title} asChild defaultOpen={isAnySubmenuActive }>
                             <SidebarMenuItem className='cursor-pointer'>
                                 <CollapsibleTrigger asChild>
                                     <SidebarMenuButton asChild tooltip={item.title}>
