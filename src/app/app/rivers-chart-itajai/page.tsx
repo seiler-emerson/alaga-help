@@ -33,7 +33,7 @@ export default function Page() {
   useEffect(() => {
     const fetchRiverData = async () => {
       try {
-        const promises = itajaiRiversData.map(river => 
+        const promises = itajaiRiversData.map(river =>
           getItajaiLevelRiver(river.id).then(response => ({
             id: river.id,
             data: {
@@ -65,13 +65,19 @@ export default function Page() {
 
   return (
     <div className='grid grid-cols-1 lg:grid-cols-2'>
-      {itajaiRiversData.map((river) => (
-        <RiverChart
-          key={river.id}
-          chartData={riverData[river.id]?.measurements || []}
-          name={river.name}
-        />
-      ))}
+      {itajaiRiversData.map((river) => {
+        const measurements = riverData[river.id]?.measurements;
+
+        return measurements && measurements.length > 0 ? (
+          <RiverChart
+            key={river.id}
+            chartData={measurements}
+            name={river.name}
+          />
+        ) : (
+          <p key={river.id}>Não há dados disponíveis para {river.name}</p>
+        );
+      })}
     </div>
   );
 }

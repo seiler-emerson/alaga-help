@@ -64,7 +64,6 @@ export const RiverChart = ({ chartData, name }: Props) => {
         if (!currentLevel) return "";
 
         if (currentLevel >= data[data.length - 1]?.emergency) {
-            console.log(data[data.length - 1]?.emergency);
             return "Emergência";
         }
         if (currentLevel >= data[data.length - 1]?.alert) {
@@ -81,7 +80,7 @@ export const RiverChart = ({ chartData, name }: Props) => {
             <CardHeader>
                 <CardTitle>{name}</CardTitle>
                 <CardDescription>
-                    {/* Nível atual: {chartData[chartData?.length - 1]?.nivel}m  */}
+                    Nível atual: {parseFloat(chartData[chartData?.length - 1]?.nivel).toFixed(2)}m 
 
                 </CardDescription>
             </CardHeader>

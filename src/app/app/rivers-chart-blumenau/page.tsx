@@ -4,7 +4,7 @@ import { getNivelRio } from './action';
 import { RiverChart } from './_components/chart';
 
 export default function Page() {
-  const [riverData, setRiverData] = useState();
+  const [riverData, setRiverData] = useState([]);
 
   useEffect(() => {
 
@@ -26,14 +26,16 @@ export default function Page() {
   }, []);
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-1'>
-      {riverData &&
+    <div suppressHydrationWarning className='grid grid-cols-1 lg:grid-cols-1'>
+      {Array.isArray(riverData) && riverData.length > 0 ? (
         <RiverChart
           key={'itj-blue'}
           chartData={riverData}
           name={'Rio Itajaí-Açu - Blumenau - SC'}
         />
-      }
+      ) : (
+        <div>Carregando...</div> // Fallback consistente
+      )}
     </div>
   );
 }

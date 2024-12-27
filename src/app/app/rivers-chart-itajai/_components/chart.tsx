@@ -71,7 +71,7 @@ export const RiverChart = ({ chartData, name }: Props) => {
             <CardHeader>
                 <CardTitle>{name}</CardTitle>
                 <CardDescription>
-                    Nível atual: {chartData[chartData?.length - 1]?.rio}m - Situação: {getSituation(chartData)}
+                    Nível atual: {parseFloat(chartData[chartData?.length - 1]?.rio).toFixed(2)}m - Situação: {getSituation(chartData)}
 
                 </CardDescription>
             </CardHeader>
