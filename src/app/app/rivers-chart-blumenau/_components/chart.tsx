@@ -37,11 +37,7 @@ type Props = {
 export const RiverChart = ({ chartData, name }: Props) => {
     const getFillColor = () => {
         if (chartData) {
-
-            console.log(chartData);
-
             const currentLevel = chartData[23].nivel;
-
 
             if (!currentLevel) return "url(#fillCurrent)";
 

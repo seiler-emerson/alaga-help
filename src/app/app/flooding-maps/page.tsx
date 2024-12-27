@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import MapFloading from './_components/map-floading';
 import { getAllFlooding24h } from '@/config/api';
 
-
-
 const Page = () => {
 
     const [dataMap, setDataMap] = useState<{

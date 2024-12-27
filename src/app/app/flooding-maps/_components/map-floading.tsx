@@ -3,9 +3,8 @@
 import L, { LatLngTuple } from "leaflet";
 import React, { useState } from "react";
 import { AttributionControl, MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from 'react-leaflet-cluster';
-import 'leaflet/dist/leaflet.css';
+import "leaflet/dist/leaflet.css";
 import { getNotificationById } from '@/config/api';
 import { format } from 'date-fns';
 import { Coordinate } from '@/types/Coordinate';
@@ -30,9 +29,6 @@ const MapFloading = ({ coordinates }: Props) => {
     const zoom: number = 9
     const tiler = theme === "light" ? "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
 
-    const iconurl = "/img/map/location.svg"
-
-    //Marcadores
     const notificationIcon = new L.Icon({
         iconUrl: "/img/map/blue_marker.svg",
         iconSize: new L.Point(10, 10)
@@ -71,7 +67,6 @@ const MapFloading = ({ coordinates }: Props) => {
     }
 };
 
-// Personalizar cor do cluster - trabalha juntos Map.css
 const createClusterCustomIcon = function (cluster: any) {
     var childCount = cluster.getChildCount();
     var c = ' marker-cluster-';
@@ -107,10 +102,8 @@ return (
                     chunkedLoading
                     maxClusterRadius={20}
                     iconCreateFunction={createClusterCustomIcon}
-
                 >
                     {coordinates &&
-
                         coordinates.map((item, index) => (
                             <Marker
                                 key={index}
@@ -120,8 +113,6 @@ return (
                                     click: () => handleMarkerClick(item),
                                 }}
                             >
-
-
                                 <Popup>
                                     {markerSelected ? (
 
@@ -140,29 +131,11 @@ return (
                                     )
                                     }
                                 </Popup>
-
                             </Marker>
                         ))
-
                     }
                 </MarkerClusterGroup>
-
-                {/* <MarkerClusterGroup
-            chunkedLoading
-          >
-            {coordinates.map((item, index) => (
-              <Marker
-                key={index}
-                position={[item.latitude, item.longitude]}
-                title={item.id}
-                icon={confirmedIcon}
-              ></Marker>
-            ))}
-          </MarkerClusterGroup> */}
-
             </MapContainer>
-
-
         }
     </>
 );

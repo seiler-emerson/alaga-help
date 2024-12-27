@@ -1,10 +1,9 @@
 "use client";
 
 import L, { LatLngBoundsExpression, LatLngTuple } from "leaflet";
-import React, { useState } from "react";
-import { AttributionControl, MapContainer, Marker, Popup, Rectangle, TileLayer, useMap } from "react-leaflet";
+import React from "react";
+import { AttributionControl, MapContainer, Rectangle, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import 'leaflet/dist/leaflet.css';
 import { Coordinate } from '@/types/Coordinate';
 import { useTheme } from 'next-themes';
 
@@ -27,8 +26,6 @@ const MapFloading = ({ coordinates, bounds }: Props) => {
     const zoom: number = 9
     const tiler = theme === "light" ? "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
 
-    const iconurl = "/img/map/location.svg"
-
     const mapStyle = {
         height: "100%",
         width: "100%",
@@ -47,7 +44,6 @@ const MapFloading = ({ coordinates, bounds }: Props) => {
             [bound.limitLatEnd, bound.limitLonEnd]      // northEast
         ]);
     };
-
 
     return (
         <>
@@ -70,11 +66,7 @@ const MapFloading = ({ coordinates, bounds }: Props) => {
                             pathOptions={boundStyle}
                         />
                     ))}
-
-
                 </MapContainer>
-
-
             }
         </>
     );

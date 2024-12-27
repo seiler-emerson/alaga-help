@@ -8,7 +8,6 @@ import { getFloodingFilterOptions, getFloodingNotifications } from '../actions';
 
 
 export const Table = () => {
-    // const notifications = await getAllNotification()
     const [data, setData] = useState<{ notifications: { id: string, city: string, date: any, district: string, state: string, zipcode: number }[], pagination: { currentPage: number, totalPages: number, totalCount: number, limit: number } }>({ notifications: [], pagination: { currentPage: 1, totalPages: 1, totalCount: 0, limit: 10 } })
     const [filters, setFilters] = useState({})
     const [filterOptions, setFilterOptions] = useState<{ states: string[], cities: string[], districts: string[] }>({ states: [], cities: [], districts: [] })

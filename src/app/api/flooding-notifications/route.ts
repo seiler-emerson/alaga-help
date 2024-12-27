@@ -60,7 +60,6 @@ export async function GET(request: Request) {
       const limit = parseInt(searchParams.get('limit') || '10');
       const skip = (page - 1) * limit;
 
-      // Extract filters from query parameters
       const filters: Record<string, string> = {};
       ['district', 'city', 'state'].forEach(key => {
           const value = searchParams.get(key);

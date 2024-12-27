@@ -1,4 +1,3 @@
-// types.ts
 interface RiverMeasurement {
   datahora: string;
   rio: number;
@@ -21,7 +20,6 @@ interface RiverData {
   [key: string]: RiverLevels;
 }
 
-// page.tsx
 "use client"
 import { useEffect, useState } from 'react';
 

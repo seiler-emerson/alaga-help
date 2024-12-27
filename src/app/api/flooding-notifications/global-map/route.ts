@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Prisma, PrismaClient } from '@prisma/client';
-import { auth } from '@/services/auth';
+import {  PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 

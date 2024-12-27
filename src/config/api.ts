@@ -117,8 +117,6 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 export const getBlumenauLevelRiver = async (): Promise<any> => {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_BLUMENAU_RIVER}`);
-    console.log(response);
-    
     return response;
 
 };

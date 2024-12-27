@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import MapFloading from './_components/map-floading';
 import { getAllStreetFlooding24 } from '@/config/api';
 
-
-
 const Page = () => {
 
     const [dataMap, setDataMap] = useState<any[]>()
@@ -23,7 +21,6 @@ const Page = () => {
     useEffect(() => {
         getDataMap()
     }, [])
-    
 
     return (
         <div className='h-full className="z-[100]"'>

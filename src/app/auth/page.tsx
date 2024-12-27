@@ -4,7 +4,6 @@ import { GalleryVerticalEnd } from 'lucide-react';
 import { AuthForm } from './_components/auth-form';
 import Image from 'next/image';
 
-
 const Page = () => {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">

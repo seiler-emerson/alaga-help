@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import MapFloading from './_components/map-floading';
 import { getAllFlooding24h } from '@/config/api';
 
-
-
 const Page = () => {
 
     const [dataMap, setDataMap] = useState<number[][]>()
@@ -17,10 +15,8 @@ const Page = () => {
             for (let index = 0; index < response.length; index++) {
                 coordinate.push([response[index].latitude, response[index].longitude])
             }
-
             setDataMap(coordinate)
         }
-        console.log(response)
     };
 
     useEffect(() => {

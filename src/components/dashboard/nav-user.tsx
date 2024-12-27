@@ -85,7 +85,6 @@ export function NavUser({
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
                             <DropdownMenuItem
-                                onClick={() => console.log('')}
                                 className={'cursor-pointer'}>
                                 <Link href={'/app/user-settings'} className='flex gap-2'>
                                     <BadgeCheck />

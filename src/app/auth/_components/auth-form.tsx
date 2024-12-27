@@ -11,7 +11,6 @@ import { signIn } from "next-auth/react";
 import { toast } from "@/hooks/use-toast"
 import { SignInFormSchema } from '../schema'
 
-
 export const AuthForm = () => {
 
     type SignIObject = z.infer<typeof SignInFormSchema>
@@ -33,7 +32,6 @@ export const AuthForm = () => {
                 description: 'Ocorreu um erro, tente novamente!'
             })
         }
-
     }
 
     return (
