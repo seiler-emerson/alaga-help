@@ -2,17 +2,40 @@ import NextAuth from "next-auth"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from '../database'
 import EmailProvider from "next-auth/providers/email"
-import Nodemailer from "next-auth/providers/nodemailer"
 import { createTransport } from "nodemailer"
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
-  trustHost: process.env.AUTH_TRUST_HOST === "true",
+  trustHost: true,
   pages: {
     signIn: '/auth',
     signOut: '/auth',
     error: '/auth',
     verifyRequest: '/auth',
     newUser: '/app/flooding-notification',
+  },
+  // callbacks: {
+  //   async session({ session, user }) {
+  //     if (session.user) {
+  //       session.user.id = user.id
+  //     }
+  //     return session
+  //   },
+  //   async redirect({ url, baseUrl }) {
+  //     if (url.startsWith(baseUrl)) return url
+  //     if (url.startsWith("/")) return baseUrl + url
+  //     return baseUrl
+  //   },
+  // },
+  cookies: {
+    sessionToken: {
+      name: `__Secure-authjs.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: true
+      }
+    }
   },
   adapter: PrismaAdapter(prisma),
   providers: [

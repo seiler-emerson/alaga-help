@@ -7,10 +7,10 @@ import { Label } from "@/components/ui/label"
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signIn } from "next-auth/react";
 import { toast } from "@/hooks/use-toast"
 import { SignInFormSchema } from '../schema'
 import { useState } from 'react'
+import { signIn } from "next-auth/react";
 
 export const AuthForm = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +24,7 @@ export const AuthForm = () => {
     const handleSubmitForm = async (data: SignIObject) => {
         try {
             setIsLoading(true)
-            "use server"
+            // "use server"
             await signIn('email', { email: data.email, redirect: false })
             toast({
                 title: 'Link Mágico Enviado!',
