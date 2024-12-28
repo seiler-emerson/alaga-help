@@ -45,6 +45,7 @@ interface DataTableProps<TData, TValue> {
     totalCount: number
     limit: number
   }
+  loading: boolean,
   onPageChange: (page: number) => void
   onFilterChange: (filters: Record<string, string>) => void
   filterOptions: {
@@ -58,6 +59,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   pagination,
+  loading,
   onPageChange,
   onFilterChange,
   filterOptions,
@@ -331,7 +333,7 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {(table.getRowModel().rows?.length && !loading) ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -347,7 +349,9 @@ export function DataTable<TData, TValue>({
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  Sem resultados.
+                  {loading ? (<>Carregando...</>) : (<>Sem resultados...</>)
+                    
+                  } 
                 </TableCell>
               </TableRow>
             )}

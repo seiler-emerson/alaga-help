@@ -59,6 +59,7 @@ export const getAllFloodingNotifications = async (page: number = 1, limit: numbe
         limit: number;
     }
 }> => {
+    // await new Promise(resolve => setTimeout(resolve, 2000))
     try {
         const response = await api.get('/flooding-notifications', {
             params: {

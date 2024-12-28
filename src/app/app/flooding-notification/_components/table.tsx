@@ -9,12 +9,14 @@ import { getFloodingFilterOptions, getFloodingNotifications } from '../actions';
 
 export const Table = () => {
     const [data, setData] = useState<{ notifications: { id: string, city: string, date: any, district: string, state: string, zipcode: number }[], pagination: { currentPage: number, totalPages: number, totalCount: number, limit: number } }>({ notifications: [], pagination: { currentPage: 1, totalPages: 1, totalCount: 0, limit: 10 } })
+    const [loading, setLoading] = useState(true)
     const [filters, setFilters] = useState({})
     const [filterOptions, setFilterOptions] = useState<{ states: string[], cities: string[], districts: string[] }>({ states: [], cities: [], districts: [] })
   
     const getData = async (page: number, currentFilters: any) => {
         const response = await getFloodingNotifications(page, 10, currentFilters)
         setData(response)
+        setLoading(false)
     };
     
     const getFilterOptions = async (currentFilters: any) => {
@@ -23,6 +25,7 @@ export const Table = () => {
     };
 
     const handlePageChange = (newPage: number) => {
+        setLoading(true)
         getData(newPage, filters)
     }
 
@@ -44,6 +47,7 @@ export const Table = () => {
                     columns={columns}
                     data={data.notifications}
                     pagination={data.pagination}
+                    loading={loading}
                     onPageChange={handlePageChange}
                     onFilterChange={handleFilterChange}
                     filterOptions={filterOptions}
