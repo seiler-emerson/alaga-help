@@ -1,23 +1,18 @@
 "use client"
 import { useEffect, useState } from 'react';
-import { getLevelRiver } from './action';
-import { RiverChart } from './_components/chart';
+import { RiverChart } from '../../../components/chart/river-chart';
+import { getRiverById } from '@/config/api';
+import { RiverDataGraph } from '@/types/RiverData';
 
 export default function Page() {
-  const [riverData, setRiverData] = useState([]);
+  const [riverData, setRiverData] = useState<RiverDataGraph>();
 
   useEffect(() => {
 
     const fetchRiverData = async () => {
       try {
-        const data = await getLevelRiver()
-        for (let index = 0; index < data.length; index++) {
-          data[index].observation = 3
-          data[index].attention = 4
-          data[index].alert = 6
-          data[index].maxAlert = 8
-        }
-        setRiverData(data)
+        const data = await getRiverById('01', 'blumenau')
+        setRiverData(data.data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);
       }
@@ -27,14 +22,13 @@ export default function Page() {
 
   return (
     <div suppressHydrationWarning className='grid grid-cols-1 lg:grid-cols-1'>
-      {Array.isArray(riverData) && riverData.length > 0 ? (
+      {riverData ? (
         <RiverChart
           key={'itj-blue'}
           chartData={riverData}
-          name={'Rio Itajaí-Açu - Blumenau - SC'}
         />
       ) : (
-        <div>Carregando Rio Itajaí-Açu - Blumenau - SC</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> // Fallback consistente
       )}
     </div>
   );

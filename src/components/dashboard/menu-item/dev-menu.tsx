@@ -50,8 +50,6 @@ export function DevMenu({
                     })}
                 </SidebarMenu>
             </SidebarGroupContent>
-            <span className='text-sm my-4'>Pague-me um café!</span>
-            <img className='' src='/img/buymecoffe.png' />
         </SidebarGroup>
     )
 }
