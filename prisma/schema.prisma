@@ -109,3 +109,24 @@ model FloodingNotification {
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt      DateTime @default(now())
 }
+
+model River {
+  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  city           String
+  state          String
+  riverLevels    RiverLevel[]
+}
+
+model RiverLevel {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  riverId        String   @db.Uuid // Especifica o tipo UUID
+  river          River    @relation(fields: [riverId], references: [id])
+  date           DateTime
+  level          Float
+  observation    Float?
+  attention      Float?
+  alert          Float?
+  emergency      Float?
+  @@index([riverId])
+}

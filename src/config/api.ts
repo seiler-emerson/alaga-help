@@ -110,7 +110,6 @@ export const getAllStreetFlooding24 = async (): Promise<Coordinate[]> => {
 
 export const getItajaiLevelRiver = async (id: string): Promise<any> => {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_ITAJAI_SC_RIVER}${id}`);
-    console.log(response);
     return response;
 
 };
@@ -123,9 +122,18 @@ export const getBlumenauLevelRiver = async (): Promise<any> => {
 
 };
 
-export const getRiverById = async (id: string, city: string): Promise<any> => {
+export const getRiverByExternalApi = async (id: string, city: string): Promise<any> => {
     try {
         const response = await api.get(`/river/${city}/${id}`);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getRiverById = async (id: string): Promise<any> => {
+    try {
+        const response = await api.get(`/river-level/${id}`);
         return response;
     } catch (error) {
         throw error;

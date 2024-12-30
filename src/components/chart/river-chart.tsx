@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import { format } from 'date-fns';
-import { RiverData, RiverDataGraph } from '@/types/RiverData';
+import { RiverDataGraph } from '@/types/RiverData';
 
 const chartConfig = {
     observation: {
@@ -35,27 +35,20 @@ type Props = {
     chartData: RiverDataGraph
 }
 export const RiverChart = ({ chartData }: Props) => {
-    console.log(chartData);
-    
     const getFillColor = () => {
         if (chartData) {
             const currentLevel = chartData.level[chartData.level.length - 1].level;
             if (!currentLevel) return "url(#fillLevel)";
             if (chartData.emergency !== null && currentLevel >= chartData.emergency) {
-                console.log('emer');
-                
                 return "url(#fillEmergency)";
             }
             if (chartData.alert !== null && currentLevel >= chartData.alert) {
-                console.log('ale');
                 return "url(#fillAlert)";
             }
             if (chartData.attention !== null && currentLevel >= chartData.attention) {
-                console.log('ate');
                 return "url(#fillAttention)";
             }
             if (chartData.observation !== null && currentLevel >= chartData.observation) {
-                console.log('ob');
                 return "url(#fillObservation)";
             }
             return "url(#fillLevel)";
@@ -101,15 +94,27 @@ export const RiverChart = ({ chartData }: Props) => {
                     >
                         <CartesianGrid vertical={false} />
                         <XAxis
-                            dataKey="data"
+                            dataKey="date"
                             tickLine={false}
                             axisLine={false}
                             tickMargin={8}
-                            tickFormatter={(value) => format(new Date(value), 'hh:mm')}
+                            tickFormatter={(value) => {
+                                const date = new Date(value);
+                                if (isNaN(date.getTime())) return '';
+                                return format(date, 'HH:mm');
+                            }}
                         />
 
                         <YAxis />
-                        <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+                        <ChartTooltip
+                            cursor={false}
+                            content={<ChartTooltipContent
+                                labelFormatter={(value) => {
+                                    const date = new Date(value);
+                                    if (isNaN(date.getTime())) return '';
+                                    return format(date, 'dd/MM/yyyy HH:mm');
+                                }}
+                            />} />
                         <defs>
                             <linearGradient id="fillLevel" x1="0" y1="0" x2="0" y2="1">
                                 <stop
@@ -184,14 +189,14 @@ export const RiverChart = ({ chartData }: Props) => {
                                 />
                             </linearGradient>
                         </defs>
-                         <Area
+                        <Area
                             dataKey="level"
                             type="natural"
                             fill={getFillColor()}
                             fillOpacity={0.4}
                             stackId="rio"
                         />
-                        
+
                         <Area
                             dataKey="observation"
                             type="natural"

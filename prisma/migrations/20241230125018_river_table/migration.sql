@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "RiverLevel" ALTER COLUMN "observation" DROP NOT NULL,
+ALTER COLUMN "attention" DROP NOT NULL,
+ALTER COLUMN "alert" DROP NOT NULL,
+ALTER COLUMN "emergency" DROP NOT NULL;

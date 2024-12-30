@@ -11,7 +11,7 @@ export default function Page() {
 
     const fetchRiverData = async () => {
       try {
-        const data = await getRiverById('01', 'blumenau')
+        const data = await getRiverById('1601b4e2-b02e-4cb4-b165-1b529a145a29')
         setRiverData(data.data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);
