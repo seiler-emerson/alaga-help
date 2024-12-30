@@ -10,11 +10,11 @@ export async function GET(request: Request) {
       oneDayAgo.setHours(oneDayAgo.getHours() - 24);
   
       const notifications = await prisma.floodingNotification.findMany({
-        where: {
-          date: {
-            gte: oneDayAgo
-          }
-        },
+        // where: {
+        //   date: {
+        //     gte: oneDayAgo
+        //   }
+        // },
         select: {
           id: true,
           latitude: true,
