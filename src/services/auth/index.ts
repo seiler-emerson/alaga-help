@@ -28,8 +28,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   // },
   cookies: {
     sessionToken: {
-      // name: `__Secure-authjs.session-token`,
-      name: `authjs.session-token`,
+      name: process.env.NODE_ENV === 'production' 
+      ? '__Secure-authjs.session-token'
+      : 'authjs.session-token',
+      // name: `authjs.session-token`,
       options: {
         httpOnly: true,
         sameSite: 'lax',
