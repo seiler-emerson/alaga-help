@@ -237,7 +237,17 @@ export const RiverChart = ({ chartData }: Props) => {
                 <div className="flex w-full items-start gap-2 text-sm">
                     <div className="grid gap-2">
                         <div className="flex items-center gap-2 font-medium leading-none">
-                            Fonte dos dados: <a href="https://alertablu.blumenau.sc.gov.br/d/nivel-do-rio" target='_blank'>AlertaBlu - Defesa Cívil - Blumenau-SC</a>
+                            {chartData.name === 'Rio Itajaí-Açu - AlertaBlu' ? (
+
+                                <span className='text-sm'>
+                                    Fonte dos dados: <a href="https://alertablu.blumenau.sc.gov.br/d/nivel-do-rio" target='_blank'>AlertaBlu - Defesa Cívil - Blumenau-SC</a>
+                                </span>
+                            ):(
+                                <span className='text-sm'>
+                                    Fonte dos dados: <a href="https://defesacivil.itajai.sc.gov.br/monitoramento/nivel-rios" target='_blank'>Defesa Cívil - Itajaí-SC</a>
+                                </span>
+                            )
+                            }
                         </div>
                     </div>
                 </div>
