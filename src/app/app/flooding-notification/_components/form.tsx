@@ -302,13 +302,7 @@ const NotificationForm = ({ openForm }: Props) => {
                                         }
                                     </div>
                                     <div className="flex flex-col space-y-1.5">
-                                        <Label htmlFor="name">Cidade*</Label>
-                                        <Input
-                                            {...register('city')}
-                                        />
-                                        {errors.city &&
-                                            <p className='text-red-400'>{errors.city.message as string}</p>
-                                        }
+
                                     </div>
                                 </div>
                                 <div className="flex flex-col space-y-1.5">
