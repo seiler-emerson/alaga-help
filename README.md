@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alaga Help 🌊
 
-## Getting Started
+**Alaga Help** is a SaaS designed to map and monitor floods, providing a comprehensive view of critical flood-prone areas. Inspired by personal experiences, the project combines modern technologies and continuous learning to create useful and accessible solutions.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Notifications for flood points.
+- Automatic coordinate lookup (points and street boundaries).
+- Interactive map generation (Points / Area / Heatmaps).
+- River level graph creation.
+- Quick links to Civil Defense information (SC / Itajaí / Blumenau).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend:** Next.js 15, React 19, Schadcn/ui.
+- **Backend:** Prisma, Python, Docker.
+- **APIs:** Nominatim, ViaCEP.
+- **Database:** Postgres.
+- **Maps:** Leaflet.
+- **Other tools:** React Hook Form, Zod, Axios.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📹 Project Videos
 
-## Learn More
+1️⃣ **Overview video:** A detailed presentation of all system features. [Watch video](https://youtu.be/FQ6Kq_sIgZk)
 
-To learn more about Next.js, take a look at the following resources:
+2️⃣ **Practical tutorial:** A step-by-step guide on how to deploy the application locally in a homelab. [Watch video](https://youtu.be/FQ6Kq_sIgZk)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📌 About Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Currently, my server does not run 24/7. I am looking for an affordable VPS to host this application and future projects.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🌐 Learn More
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out my LinkedIn post [here](add_the_link_to_the_post) to better understand the motivation behind this project and follow updates.
+
+---
