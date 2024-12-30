@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { RiverChart } from '../../../components/chart/river-chart';
-import { getRiverById } from '@/config/api';
+import { getRiverByExternalApi, getRiverById } from '@/config/api';
 import { RiverDataGraph } from '@/types/RiverData';
 
 export default function Page() {
@@ -32,36 +32,42 @@ export default function Page() {
       }
       try {
         const data = await getRiverById('157483ba-f5ed-4858-9c05-04a7995c045a')
+        // const data = await getRiverByExternalApi('01', 'itajai')
         setRiverData3(data.data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);
       }
       try {
         const data = await getRiverById('bd1905ba-46a6-498e-88ee-03e5ff38947e')
+        // const data = await getRiverByExternalApi('02', 'itajai')
         setRiverData4(data.data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);
       }
       try {
         const data = await getRiverById('f4423ad0-4414-4fff-bfd7-691bcbf26f47')
+        // const data = await getRiverByExternalApi('03', 'itajai')
         setRiverData5(data.data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);
       }
       try {
         const data = await getRiverById('3af3f0da-1fb2-4278-8025-6fc37ce2dd57')
+        // const data = await getRiverByExternalApi('04', 'itajai')
         setRiverData6(data.data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);
       }
       try {
         const data = await getRiverById('fb1e5f8e-11da-4bfe-aaf8-dfa17cc775c0')
+        // const data = await getRiverByExternalApi('05', 'itajai')
         setRiverData7(data.data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);
       }
       try {
         const data = await getRiverById('a0df2c2b-ea31-453d-8be9-194e705255ff')
+        // const data = await getRiverByExternalApi('06', 'itajai')
         setRiverData8(data.data)
       } catch (error) {
         console.error('Erro ao buscar dados dos rios:', error);
@@ -84,7 +90,7 @@ export default function Page() {
           chartData={riverData1}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> 
       )}
       {riverData2 ? (
         <RiverChart
@@ -92,7 +98,7 @@ export default function Page() {
           chartData={riverData2}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> 
       )}
       {riverData3 ? (
         <RiverChart
@@ -100,7 +106,7 @@ export default function Page() {
           chartData={riverData3}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> 
       )}
       {riverData4 ? (
         <RiverChart
@@ -108,7 +114,7 @@ export default function Page() {
           chartData={riverData4}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> 
       )}
       {riverData5 ? (
         <RiverChart
@@ -116,7 +122,7 @@ export default function Page() {
           chartData={riverData5}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> 
       )}
       {riverData6 ? (
         <RiverChart
@@ -124,7 +130,7 @@ export default function Page() {
           chartData={riverData6}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> 
       )}
       {riverData7 ? (
         <RiverChart
@@ -132,7 +138,7 @@ export default function Page() {
           chartData={riverData7}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> 
       )}
       {riverData8 ? (
         <RiverChart
@@ -140,7 +146,7 @@ export default function Page() {
           chartData={riverData8}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> 
       )}
       {riverData9 ? (
         <RiverChart
@@ -148,7 +154,7 @@ export default function Page() {
           chartData={riverData9}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div> 
       )}
     </div>
   );

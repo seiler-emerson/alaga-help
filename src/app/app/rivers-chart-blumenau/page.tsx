@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { RiverChart } from '../../../components/chart/river-chart';
-import { getRiverById } from '@/config/api';
+import { getRiverByExternalApi, getRiverById } from '@/config/api';
 import { RiverDataGraph } from '@/types/RiverData';
 
 export default function Page() {
@@ -11,6 +11,7 @@ export default function Page() {
 
     const fetchRiverData = async () => {
       try {
+        // const data = await getRiverByExternalApi('01', 'blumenau')
         const data = await getRiverById('1601b4e2-b02e-4cb4-b165-1b529a145a29')
         setRiverData(data.data)
       } catch (error) {
@@ -24,11 +25,11 @@ export default function Page() {
     <div suppressHydrationWarning className='grid grid-cols-1 lg:grid-cols-1'>
       {riverData ? (
         <RiverChart
-          key={'itj-blue'}
+          key={'itj-blu'}
           chartData={riverData}
         />
       ) : (
-        <div>Carregando Gráfico...</div> // Fallback consistente
+        <div>Carregando Gráfico...</div>
       )}
     </div>
   );
