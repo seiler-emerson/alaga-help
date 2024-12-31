@@ -23,7 +23,7 @@
 
 1️⃣ **Overview video:** A detailed presentation of all system features. [Watch video](https://youtu.be/FQ6Kq_sIgZk)
 
-2️⃣ **Practical tutorial:** A step-by-step guide on how to deploy the application locally in a homelab. [Watch video](https://youtu.be/FQ6Kq_sIgZk)
+2️⃣ **Practical tutorial:** A step-by-step guide on how to deploy the application locally in a homelab. [Watch video](https://youtu.be/6oJXhvFR5gI)
 
 ## 📌 About Deployment
 
@@ -33,6 +33,6 @@ Currently, my server does not run 24/7. I am looking for an affordable VPS to ho
 
 ## 🌐 Learn More
 
-Check out my LinkedIn post [here]([add_the_link_to_the_post](https://www.linkedin.com/posts/seileremerson_novidade-no-%C3%A1rea-fala-pessoal-activity-7279814631546638337-KS8O?utm_source=share&utm_medium=member_desktop)) to better understand the motivation behind this project and follow updates.
+Check out my LinkedIn post [here](https://www.linkedin.com/posts/seileremerson_novidade-no-%C3%A1rea-fala-pessoal-activity-7279814631546638337-KS8O?utm_source=share&utm_medium=member_desktop) to better understand the motivation behind this project and follow updates.
 
 ---
